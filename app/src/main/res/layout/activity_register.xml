@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hospital2"
+    tools:context=".RegisterActivity">
+
+
+
+    <Spinner
+        android:id="@+id/spinner_item"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"
+
+        />
+
+    <EditText
+        android:id="@+id/Name_RA"
+        android:layout_width="350dp"
+        android:layout_below="@id/spinner_item"
+        android:layout_centerHorizontal="true"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edit_round"
+        android:hint="Name"
+        android:inputType="text|textNoSuggestions"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="106dp" />
+    <EditText
+        android:id="@+id/Date_of_birth"
+        android:layout_below="@+id/Name_RA"
+        android:layout_width="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edit_round"
+        android:hint="DOB: MM/DD/YYYY"
+        android:textAlignment="center"
+        android:inputType="text|textNoSuggestions"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="106dp" />
+    <EditText
+        android:id="@+id/Email_RA"
+        android:layout_below="@+id/Date_of_birth"
+        android:layout_width="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edit_round"
+        android:hint="Email"
+        android:textAlignment="center"
+        android:inputType="text|textNoSuggestions"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+
+    <EditText
+        android:id="@+id/Username_RA"
+        android:layout_below="@+id/Email_RA"
+        android:layout_width="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edit_round"
+        android:hint="User ID"
+        android:textAlignment="center"
+        android:inputType="text|textNoSuggestions"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+
+
+    <EditText
+        android:id="@+id/Password_RA"
+        android:layout_below="@+id/Username_RA"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:background="@drawable/edit_round"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="25dp"
+        android:inputType="textPassword"
+        android:hint="Password"
+
+
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="106dp" />
+    <EditText
+        android:id="@+id/confirm_passwordRA"
+        android:layout_below="@+id/Password_RA"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:background="@drawable/edit_round"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="25dp"
+        android:inputType="textPassword"
+        android:hint="Confirm Password"
+
+
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+    <Button
+        android:id="@+id/btn_Create"
+        android:layout_width="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confirm_passwordRA"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="15dp"
+        android:text="CREATE ACCOUNT"
+        android:background="@drawable/button"
+        />
+
+
+    <TextView
+        android:id="@+id/new_account"
+        android:layout_below="@+id/btn_Create"
+        android:text="Already Have an Account??"
+        android:textStyle="italic"
+        android:clickable="true"
+        android:textColor="#000000"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="240dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+
+        />
+
+
+
+
+
+
+</RelativeLayout>

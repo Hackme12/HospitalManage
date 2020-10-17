@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "140080865344",
+    "firebase_url": "https://hospital-management-47d6c.firebaseio.com",
+    "project_id": "hospital-management-47d6c",
+    "storage_bucket": "hospital-management-47d6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140080865344:android:9728f7c9f35961cd1f3fa5",
+        "android_client_info": {
+          "package_name": "com.example.hospitalmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140080865344-ci6rmb0159ff3jiieroh82aakri2vdfv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCGjwOGUIGowACBjx8a70Gv5dtFY5xTkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140080865344-ci6rmb0159ff3jiieroh82aakri2vdfv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

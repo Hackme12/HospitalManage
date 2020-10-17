@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appointment"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+
+
+        />
+
+    <LinearLayout
+        android:id="@+id/linear_layout1"
+        android:layout_marginTop="190dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal">
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/create_image"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/iconappointment"
+            app:civ_border_color="#FF000000"
+
+            >
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/change_image"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginStart="40dp"
+            android:src="@drawable/iconchangeappointment"
+            app:civ_border_color="#FF000000"
+
+            >
+        </de.hdodenhof.circleimageview.CircleImageView>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cancel_image"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginStart="35dp"
+            android:src="@drawable/iconcancelappointment"
+            app:civ_border_color="#FF000000"
+
+            >
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/linear_layout2"
+        android:layout_marginTop="-30dp"
+        android:layout_below="@+id/linear_layout1"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_create"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Create"
+            android:textStyle="italic"
+            android:layout_marginStart="35dp"
+            android:background="@drawable/button"
+
+            />
+        <Button
+            android:id="@+id/btn_change"
+            android:layout_gravity="center"
+            android:layout_width="70dp"
+            android:text="Change"
+            android:textStyle="italic"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="74dp"
+            android:background="@drawable/button"
+            android:layout_marginHorizontal="@android:dimen/app_icon_size"
+
+            />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_gravity="center"
+            android:layout_width="70dp"
+            android:text="Cancel"
+            android:textStyle="italic"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:background="@drawable/button"
+            android:layout_marginHorizontal="@android:dimen/app_icon_size"
+
+            />
+
+    </LinearLayout>
+
+
+
+
+
+    <TextView
+        android:id="@+id/previous_page"
+        android:layout_below="@+id/linear_layout2"
+        android:text="Previous Page"
+        android:textStyle="italic"
+        android:clickable="true"
+        android:textColor="#000000"
+        android:layout_marginTop="160dp"
+        android:layout_marginStart="320dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        />
+
+
+
+
+</RelativeLayout>

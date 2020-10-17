@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_row="3"
+    android:layout_column="2"
+    android:orientation="vertical"
+    android:background="@drawable/iconnursebackground"
+    tools:context=".StaffActivity">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="3"
+        android:alignmentMode="alignMargins"
+        android:layout_weight="2"
+        android:columnOrderPreserved="false"
+        android:padding="20dp">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            
+            >
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+                <ImageView
+                    android:id="@+id/staff_checkIn"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="125dp"
+                    android:src="@drawable/iconcheckin"
+                    
+                    />
+                <TextView
+                    android:id="@+id/text_checkin"
+                    android:text="Check In"
+                    android:textStyle="bold"
+                    android:layout_marginStart="40dp"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="10dp"
+
+
+            >
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+                <ImageView
+                    android:id="@+id/image_Appointment"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="125dp"
+                    android:src="@drawable/iconappointment1"
+
+                    />
+                <TextView
+                    android:id="@+id/text_Appointment"
+                    android:text="Appointment"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_marginStart="35dp"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+
+            >
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+                <ImageView
+                    android:id="@+id/image_addPatient"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="125dp"
+                    android:src="@drawable/iconaddpatient1"
+
+                    />
+                <TextView
+                    android:id="@+id/text_addPatient"
+                    android:text="Add Patient"
+                    android:textStyle="bold"
+                    android:layout_marginStart="40dp"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="10dp"
+
+
+            >
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+                <ImageView
+                    android:id="@+id/image_updatePatientInfo"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="125dp"
+                    android:src="@drawable/iconupdateinfo"
+
+                    />
+                <TextView
+                    android:id="@+id/text_updatePatientInfo"
+                    android:text="Update Patient Info"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_marginStart="2dp"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+
+            >
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+                <ImageView
+                    android:id="@+id/image_payment"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="125dp"
+                    android:src="@drawable/iconpayment"
+
+                    />
+                <TextView
+                    android:id="@+id/text_payment"
+                    android:text="Pay Now"
+                    android:textStyle="bold"
+                    android:layout_marginStart="40dp"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="10dp"
+
+
+            >
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+                <ImageView
+                    android:id="@+id/image_AppointmentList"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="125dp"
+                    android:src="@drawable/iconappointmentlistcopy"
+
+                    />
+                <TextView
+                    android:id="@+id/text_AppointmentList"
+                    android:text="Appointment List"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_marginStart="18dp"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </GridLayout>
+
+
+
+
+
+
+
+
+
+</LinearLayout>

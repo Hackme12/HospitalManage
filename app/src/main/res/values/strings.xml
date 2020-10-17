@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Hospital Management</string>
+    <string name="logout">Logout</string>
+    <string name="Patient_Id">Initial of your First name and Last Name + last 4 digit of SSN</string>
+    <string name="mm_dd_yyyy">MM-dd-YYYY</string>
+    <string name="confirmation">ARE YOU SURE YOU WANT TO CANCEL YOUR APPOINTMENT?</string>
+</resources>

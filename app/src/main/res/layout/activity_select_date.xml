@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".SelectDate">
+
+
+    <LinearLayout
+        android:id="@+id/layout_linear11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_Select_Date"
+            android:layout_width="174dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/button"
+            android:drawableRight="@drawable/iconcalendar"
+            android:paddingStart="10dp"
+            android:paddingRight="20dp"
+            android:text="Select Date"
+            android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:id="@+id/date_of_appointment"
+            android:layout_width="233dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginRight="10dp"
+            android:hint="@string/mm_dd_yyyy"
+            android:paddingHorizontal="50dp"
+            android:paddingVertical="15dp"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_linear22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_linear11"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_Select_Time"
+            android:layout_width="174dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button"
+            android:drawableRight="@drawable/icontime"
+            android:paddingVertical="15dp"
+            android:paddingStart="20dp"
+            android:paddingRight="20dp"
+            android:text="SELECT TIME"
+            android:textColor="#000000"
+            android:textStyle="bold"
+
+            />
+
+        <Spinner
+            android:id="@+id/spinner_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:autofillHints="Select time" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_linear33"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_linear22"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_select_Doctor"
+            android:layout_width="174dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button"
+            android:drawableRight="@drawable/iconmyleft"
+            android:paddingVertical="15dp"
+            android:paddingStart="20dp"
+            android:paddingRight="20dp"
+            android:text="DOCTOR"
+            android:textColor="#000000"
+            android:textStyle="bold"
+
+            />
+
+        <Spinner
+            android:id="@+id/spinner_Doctor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:autofillHints="Select time" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_linear44"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_linear33"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_select_Patient"
+            android:layout_width="174dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button"
+            android:drawableRight="@drawable/iconmyleft"
+            android:paddingVertical="15dp"
+            android:paddingStart="20dp"
+            android:paddingRight="20dp"
+            android:text="PATIENT"
+            android:textColor="#000000"
+            android:textStyle="bold"
+
+            />
+
+        <TextView
+            android:id="@+id/Current_patient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Patient Name"
+            android:paddingStart="50dp"
+            android:paddingTop="15dp"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_linear55"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_linear44"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
+
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_create_appoint"
+            android:layout_width="174dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button"
+            android:paddingVertical="15dp"
+            android:paddingStart="20dp"
+            android:paddingRight="20dp"
+            android:text="Create"
+            android:textColor="#000000"
+            android:textStyle="bold"
+
+            />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

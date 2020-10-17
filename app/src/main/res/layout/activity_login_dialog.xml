@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/imghospitalback"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/dialogUserId"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/edit_round"
+        android:layout_centerHorizontal="true"
+       android:hint="UserId"
+        android:paddingStart="130dp"
+
+        />
+
+    <EditText
+        android:id="@+id/dialogPassword"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+         android:layout_below="@+id/dialogUserId"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_round"
+        android:hint="Password"
+        android:paddingStart="120dp"
+
+        />
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
