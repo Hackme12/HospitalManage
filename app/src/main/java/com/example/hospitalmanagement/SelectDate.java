@@ -160,7 +160,7 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
                 if(TextUtils.isEmpty(appointment_date)){
                     Toast.makeText(SelectDate.this, "Please Select Appointment date!!!", Toast.LENGTH_SHORT).show();
                 }
-                else if((appointment_time.equals("OO:OO"))){
+                else if((appointment_time.equals("00:00 : 00:00"))){
                     Toast.makeText(SelectDate.this, "Please Select Appointment date!!!", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -199,6 +199,7 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
+        final DatabaseReference secondRef  = database.getReference();
 
        // final String Key = doctor_name + " : "+ appointment_date +" : "+ appointment_time;
 
@@ -208,20 +209,22 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
 
-                String key = patientId+":" + date;
+               final String key = patientId+":" + date;
+               final String secondKey = doctorName +":" + time;
 
 
-                if(!datasnapshot.child("Appointment List").child(key).exists()){
+                if(!datasnapshot.child("AppointmentList").child(key).exists()&&(!datasnapshot.child("Doctors Schedule").child(secondKey).exists())){
 
 
                     HashMap<String, Object> appointmentData = new HashMap<>();
                     appointmentData.put("doctorName",doctorName);
                     appointmentData.put("patientName",patientName);
+                    appointmentData.put("key", key);
                     appointmentData.put("date",date);
                     appointmentData.put("time",time);
                     appointmentData.put("patientId",patientId);
 
-                    myRef.child("Appointment List").child(key).child(date).updateChildren(appointmentData)
+                    myRef.child("AppointmentList").child(key).updateChildren(appointmentData)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -237,20 +240,39 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
                                 }
                             });
 
+                    HashMap<String, Object> doctorScheduleData = new HashMap<>();
+
+                    doctorScheduleData.put("patientId",patientId);
+                    doctorScheduleData.put("patientName",patientName);
+                    doctorScheduleData.put("time",time);
+                    doctorScheduleData.put("doctorName",doctorName);
+                    doctorScheduleData.put("secondKey",secondKey);
+
+
+                    myRef.child("Doctors Schedule").child(secondKey).updateChildren(doctorScheduleData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(SelectDate.this, "Succesfully uploaded at doctor's Schedule", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                //Intent intent = new Intent(RegisterActivitythis, MainActivity.class);
+                                // startActivity(intent);
+                            } else {
+                                loadingBar.dismiss();
+                                Toast.makeText(SelectDate.this, "Failed to upload to doctor's Schedule", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
                 }
+
                 else{
 
                     loadingBar.dismiss();
-                    Toast.makeText(SelectDate.this, "There is already an appointment of "+patientName+ " for today.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SelectDate.this, "There is already an appointment of "+patientName+ " for today or \n" +
+                            "Requested Doctor is not available at that time \n Please try with another time", Toast.LENGTH_SHORT).show();
 
                 }
-
-
-
-
-
-
-
 
 
             }

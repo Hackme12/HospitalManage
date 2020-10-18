@@ -54,6 +54,15 @@ public class StaffActivity extends AppCompatActivity {
             }
         });
 
+        Appointment_List.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StaffActivity.this, AppointmentList.class);
+                startActivity(intent);
+
+            }
+        });
+
 
 
 

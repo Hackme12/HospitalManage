@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.hospitalmanagement.Users.AppointmentInformation;
 import com.example.hospitalmanagement.Users.PatientInfo;
+import com.example.hospitalmanagement.Users.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -46,6 +48,7 @@ public class Appointment extends AppCompatActivity {
     private String temp;
     private Button select_date;
     private AppointmentInformation API;
+    private ArrayList<String> patientId;
     String Patient_ID ;
     String Full_Name ;
     String Date_of_birth ;
@@ -90,8 +93,8 @@ public class Appointment extends AppCompatActivity {
         Cancel_appointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                temp = "Cancel";
-                DialogCheckPatient();
+               Intent intent  =new Intent(Appointment.this, CancelAppointment.class);
+               startActivity(intent);
             }
 
 
@@ -172,7 +175,7 @@ public class Appointment extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("Cancel                                                                        ", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel                                             ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -188,8 +191,6 @@ public class Appointment extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
-
-
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
@@ -199,26 +200,16 @@ public class Appointment extends AppCompatActivity {
                     if ((patientId.equals(patientData.getPatientID())) && (fullName.equals(patientData.getName()))
                             && (Dob.equals(patientData.getDateOfBirth()))) {
 
-                        if(temp.equals("Create")){
                         loadingBar.dismiss();
                         Intent intent = new Intent(Appointment.this, SelectDate.class);
                         intent.putExtra("Name", fullName);
                         intent.putExtra("PatientId",patientId);
                         startActivity(intent);
                         }
-                        else if(temp.equals("Change")){
-
-                        }
-                        else if(temp.equals("Cancel")){
-
-                            DialogBoxForCancel();
 
 
-                        }
-                    }
-
-
-                } else {
+                } else
+                    {
                     loadingBar.dismiss();
                     Toast.makeText(Appointment.this, "patientId Doesn't Exist", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Appointment.this, StaffActivity.class);
@@ -238,73 +229,7 @@ public class Appointment extends AppCompatActivity {
     }
 
 
-    public void DialogBoxForCancel(){
-        AlertDialog.Builder builder= new AlertDialog.Builder(this);
-        builder.setTitle("WARNING!!!");
-        builder.setMessage("Are you sure you want to cancel you Appointment?").setCancelable(false).
-                setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        loadingBar.dismiss();
-                       FirebaseDatabase database = FirebaseDatabase.getInstance();
-                       final DatabaseReference myref = database.getReference().child("Appointment List");
-
-                       myref.addValueEventListener(new ValueEventListener() {
-                           @Override
-                           public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                               for(DataSnapshot item: snapshot.getChildren()){
-                                   API = item.getValue(AppointmentInformation.class);
-                                   if(Patient_ID.equals(API.getPatientId())){
-
-                                       myref.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                           @Override
-                                           public void onComplete(@NonNull Task<Void> task) {
-                                               if(task.isSuccessful()){
-
-                                                   Toast.makeText(Appointment.this, "Successfully, delete", Toast.LENGTH_SHORT).show();
-                                                   Intent intent = new Intent(Appointment.this, AddPatient.class);
-                                                   startActivity(intent);
-
-                                               }
-                                               else{
-                                                   Toast.makeText(Appointment.this, "Failed", Toast.LENGTH_SHORT).show();
-                                               }
-                                           }
-                                       });
-                                   }
-                                   else{
-                                       Toast.makeText(Appointment.this," Please fixed it",Toast.LENGTH_SHORT).show();
-
-                                   }
-                               }
-
-
-                           }
-
-                           @Override
-                           public void onCancelled(@NonNull DatabaseError error) {
-
-                           }
-                       });
-
-
-
-                    }
-                })
-                .setNegativeButton("  No                                                  ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-
-                    }
-                });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
-
 
 
     }
 
-}

@@ -4,18 +4,21 @@ import com.example.hospitalmanagement.Appointment;
 
 public class AppointmentInformation {
 
-    public String date, time, doctorName, patientName, patientId;
+    public String date, time, doctorName, patientName, patientId,key;
 
     public AppointmentInformation(){
 
     }
 
-    public AppointmentInformation(String date, String time, String doctorName, String patientName, String patientId) {
+
+
+    public AppointmentInformation(String date, String time, String doctorName, String patientName, String patientId, String key) {
         this.date = date;
         this.time = time;
         this.doctorName = doctorName;
         this.patientName = patientName;
         this.patientId = patientId;
+        this.key = key;
     }
 
     public String getDate() {
@@ -57,4 +60,8 @@ public class AppointmentInformation {
     public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
+
+    public String getKey() { return key; }
+
+    public void setKey(String key) { this.key = key; }
 }
