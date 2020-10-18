@@ -12,6 +12,8 @@ import android.icu.text.TimeZoneFormat;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -300,6 +302,32 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case (R.id.Logout):
+                Intent intent = new Intent(SelectDate.this,MainActivity.class);
+                startActivity(intent);
+
+                break;
+
+            default:
+                break;
+
+        }
+        return true;
+    }
+
+
 
 
 }

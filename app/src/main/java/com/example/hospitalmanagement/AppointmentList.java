@@ -50,7 +50,7 @@ public class AppointmentList extends AppCompatActivity {
                 for (DataSnapshot ds: snapshot.getChildren())
                 {
                     AppInform = ds.getValue(AppointmentInformation.class);
-                    list.add(AppInform.getPatientName() +"     "   +AppInform.time );
+                    list.add("  " +AppInform.getPatientName() +"         \n "   +AppInform.time );
 
                 }
                 listView.setAdapter(adapter);
