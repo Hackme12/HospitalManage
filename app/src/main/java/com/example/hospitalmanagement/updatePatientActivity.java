@@ -16,15 +16,18 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 
 public class updatePatientActivity extends AppCompatActivity {
 
     private EditText edName,edAddress,edDob,edPhonenumber,edEmail;
     private String name, address, dob, phonenumber,  email, patientId;
     private TextView tvName;
-    private Button btnUpdate;
+    private Button btnUpdate,btnNext;
     private FirebaseDatabase database;
     private DatabaseReference reference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +39,21 @@ public class updatePatientActivity extends AppCompatActivity {
         edDob = (EditText)findViewById(R.id.edDob);
         edPhonenumber = (EditText)findViewById(R.id.edPhone);
         tvName = (TextView) findViewById(R.id.tvName);
+        btnNext = (Button)findViewById(R.id.btnNext) ;
         edEmail = (EditText)findViewById(R.id.edEmail);
         btnUpdate = (Button)findViewById(R.id.btnUpdate) ;
+
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Patient");
-
+        btnNext.setVisibility(View.INVISIBLE);
         setInfo();
+
+
+
+
+
+
+
 
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +130,8 @@ public class updatePatientActivity extends AppCompatActivity {
         email = intent.getStringExtra("pEmail");
         patientId = intent.getStringExtra("Id");
 
+
+
         tvName.setText(name);
         edName.setText(name);
         edEmail.setText(email);
@@ -125,14 +139,30 @@ public class updatePatientActivity extends AppCompatActivity {
         edPhonenumber.setText(phonenumber);
         edDob.setText(dob);
 
+        if(Objects.equals(intent.getStringExtra("Message"), "editFalse")){
+
+            tvName.setKeyListener(null);
+            edName.setKeyListener(null);
+            edEmail.setKeyListener(null);
+            edAddress.setKeyListener(null);
+            edPhonenumber.setKeyListener(null);
+            edDob.setKeyListener(null);
+            btnNext.setVisibility(View.VISIBLE);
+            btnUpdate.setVisibility(View.INVISIBLE);
+        }
+
     }
+
+    private void DialogBox() {
+        Toast.makeText(updatePatientActivity.this, "Successfully I am here", Toast.LENGTH_SHORT).show();
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
         return true;
     }
-
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 

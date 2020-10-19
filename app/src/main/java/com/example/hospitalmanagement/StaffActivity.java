@@ -30,8 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 public class StaffActivity extends AppCompatActivity {
 
     private ImageView CheckIn, Appointment, AddPatient, UpdatePatientInfo, PayNow, Appointment_List;
-    private TextView  textCheckIn, textAppointment, textAddPatient;
-    private TextView  textUpdate, textPay, textAppointmentList;
     FirebaseDatabase database;
     DatabaseReference reference;
     private EditText PId, PName;
@@ -62,7 +60,7 @@ public class StaffActivity extends AppCompatActivity {
         CheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StaffActivity.this,CheckInActivity.class);
+                Intent intent = new Intent(StaffActivity.this,AppointmentList.class);
                 startActivity(intent);
 
             }
@@ -92,6 +90,13 @@ public class StaffActivity extends AppCompatActivity {
 
             }
         });
+        PayNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StaffActivity.this,Payment.class);
+                startActivity(intent);
+            }
+        });
 
 
         UpdatePatientInfo.setOnClickListener(new View.OnClickListener() {
@@ -101,67 +106,6 @@ public class StaffActivity extends AppCompatActivity {
             }
         });
 
-        /*UpdatePatientInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(StaffActivity.this);
-                view = LayoutInflater.from(StaffActivity.this).inflate(R.layout.dialogupdatepatientinfo,null);
-                final String pId= PId.getText().toString();
-                final String pName = PName.getText().toString();
-
-                builder.setView(view);
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        reference.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.child("Patient").child(pId).child(pName).exists()){
-                                    PatientInfo cPateint = snapshot.child("Patient").child(pId).getValue(PatientInfo.class);
-
-                                    Intent intent = new Intent(StaffActivity.this,updatePatientActivity.class);
-
-                                  intent.putExtra("pName",cPateint.getName());
-                                    intent.putExtra("pAddress",cPateint.getAddress());
-                                    intent.putExtra("pPhone",cPateint.getPhoneNumber());
-                                    intent.putExtra("pDateofBirth",cPateint.getDateOfBirth());
-                                    intent.putExtra("pEmail",cPateint.getEmailId());
-                                    intent.putExtra("pSocialNumber",cPateint.getSocialSecurityNumber());
-
-                                    startActivity(intent);
-
-
-
-                                }
-
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
-
-
-
-            }
-        });*/
 
 
 
@@ -236,6 +180,8 @@ public class StaffActivity extends AppCompatActivity {
                         intent.putExtra("pPhone",cPatient.getPhoneNumber());
                         intent.putExtra("pDateofBirth",cPatient.getDateOfBirth());
                         intent.putExtra("pEmail",cPatient.getEmailId());
+                        intent.putExtra("Message","editTrue");
+
                         startActivity(intent);
                     }
 

@@ -159,8 +159,9 @@ public class CheckInActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                Toast.makeText(CheckInActivity.this,"Successfully Check-In",Toast.LENGTH_SHORT).show();
 
+               Intent intent = new Intent(CheckInActivity.this,Payment.class);
+               startActivity(intent);
 
 
             }

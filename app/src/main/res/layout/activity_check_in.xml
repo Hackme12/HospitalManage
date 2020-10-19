@@ -11,7 +11,7 @@
         android:id="@+id/linear_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:background="#1E88E5"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:text="Check-In"
-            android:background="@color/colorAccent"
+            android:background="#039DDA"
 
             />
 

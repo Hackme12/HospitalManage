@@ -77,7 +77,6 @@ public class AppointmentList extends AppCompatActivity {
 
                 }
                 listView.setAdapter(adapter);
-
             }
 
             @Override

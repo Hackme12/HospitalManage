@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private Spinner spinner;
     private EditText name, dob, email, userId;
     private EditText password, confirm_password;
+    private TextView tvhaveAcc;
     private Button btn_Create_Acc;
     private String UserType;
 
@@ -47,11 +49,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         email = (EditText) findViewById(R.id.Email_RA);
         userId = (EditText) findViewById(R.id.Username_RA);
         password = (EditText) findViewById(R.id.Password_RA);
+        tvhaveAcc = (TextView)findViewById(R.id.have_account) ;
         confirm_password = (EditText) findViewById(R.id.confirm_passwordRA);
 
         btn_Create_Acc = (Button) findViewById(R.id.btn_Create);
         loadingBar = new ProgressDialog(this);
         spinner = (Spinner) findViewById(R.id.spinner_item);
+
+
         spinner.setOnItemSelectedListener(this);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.UserType, android.R.layout.simple_spinner_item);
@@ -66,6 +71,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }
 
 
+        });
+
+        tvhaveAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
         });
 
 
