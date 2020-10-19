@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckInActivity">
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/patient_icon"
+            android:layout_width="100dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="110dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/iconpatient"
+            app:civ_border_color="#FF000000"
+            >
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NAME"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="40dp"
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_below="@+id/linear_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+
+        >
+
+        <EditText
+            android:id="@+id/edfullName"
+            android:layout_width="match_parent"
+            android:drawableLeft="@drawable/iconpeople"
+
+            android:layout_height="65dp"
+            android:hint="Full Name"
+            android:textAlignment="center"
+
+            />
+        <EditText
+            android:id="@+id/edAddress"
+            android:layout_below="@+id/edfullName"
+            android:layout_width="match_parent"
+            android:drawableLeft="@drawable/iconaddress"
+            android:textAlignment="center"
+            android:layout_height="65dp"
+            android:hint="Address"
+
+            />
+        <EditText
+            android:id="@+id/edPhone"
+            android:layout_below="@+id/edAddress"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:drawableLeft="@drawable/iconphone"
+            android:textAlignment="center"
+            android:hint="Phone Number"
+            />
+        <EditText
+            android:id="@+id/edDob"
+            android:layout_below="@+id/edPhone"
+            android:drawableLeft="@drawable/ic_baseline_date_range_24"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:textAlignment="center"
+            android:hint="Date of Birth"
+            />
+        <EditText
+            android:id="@+id/edEmail"
+            android:layout_below="@+id/edDob"
+            android:drawableLeft="@drawable/ic_baseline_date_range_24"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:textAlignment="center"
+            android:hint="Email"
+            />
+
+
+        <Button
+            android:layout_below="@+id/edEmail"
+            android:id="@+id/btnUpdate"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:text="Check-In"
+            android:background="@color/colorAccent"
+
+            />
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

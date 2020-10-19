@@ -62,6 +62,8 @@ public class StaffActivity extends AppCompatActivity {
         CheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(StaffActivity.this,CheckInActivity.class);
+                startActivity(intent);
 
             }
         });

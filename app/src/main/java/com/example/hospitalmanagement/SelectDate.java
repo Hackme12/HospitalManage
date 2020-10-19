@@ -257,8 +257,8 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
                             if (task.isSuccessful()) {
                                 Toast.makeText(SelectDate.this, "Succesfully uploaded at doctor's Schedule", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-                                //Intent intent = new Intent(RegisterActivitythis, MainActivity.class);
-                                // startActivity(intent);
+                                Intent intent = new Intent(SelectDate.this, StaffActivity.class);
+                                startActivity(intent);
                             } else {
                                 loadingBar.dismiss();
                                 Toast.makeText(SelectDate.this, "Failed to upload to doctor's Schedule", Toast.LENGTH_SHORT).show();
