@@ -15,7 +15,7 @@
 
         <!--  this list contains products -->
         <ListView
-            android:id="@+id/list1"
+            android:id="@+id/list"
             android:cacheColorHint="#00000000"
             android:scrollbars="none"
             android:fadingEdge="vertical"

@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,7 +43,6 @@ public class AppointmentList extends AppCompatActivity {
     private String pid,pname;
     ArrayList<String>list;
     ArrayAdapter<String> adapter;
-    ArrayList<String>secondList;
    private ProgressDialog loadingBar;
     AppointmentInformation AppInform;
 
@@ -54,30 +54,32 @@ public class AppointmentList extends AppCompatActivity {
         setContentView(R.layout.activity_appointment_list);
         AppInform = new AppointmentInformation();
 
-        listView = (ListView) findViewById(R.id.list1);
-        database= FirebaseDatabase.getInstance();
+        listView = (ListView) findViewById(R.id.list);
+        database = FirebaseDatabase.getInstance();
         reference = database.getReference().child("AppointmentList");
         loadingBar = new ProgressDialog(this);
         list = new ArrayList<>();
-        secondList  = new ArrayList<>();
 
-        adapter = new ArrayAdapter<>(AppointmentList.this,R.layout.appointmentlist,
-                R.id.tvAppointmentList,list);
+        adapter = new ArrayAdapter<>(AppointmentList.this, R.layout.appointmentlist,
+                R.id.tvAppointmentList, list);
 
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot ds: snapshot.getChildren())
-                {
+                for (DataSnapshot ds : snapshot.getChildren()) {
                     AppInform = ds.getValue(AppointmentInformation.class);
-                    list.add("  " +AppInform.getPatientName() +"               " +
-                            AppInform.getDate()+"\n                                           " + AppInform.getTime());
+                    list.add("  " + AppInform.getPatientName() + "               " +
+                            AppInform.getDate() + "\n                                           " + AppInform.getTime());
 
                 }
-                listView.setAdapter(adapter);
-            }
+
+                    listView.setAdapter(adapter);
+                }
+
+                //listView.setAdapter(adapter);
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -87,16 +89,14 @@ public class AppointmentList extends AppCompatActivity {
 
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                DialogCheckIn();
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    DialogCheckIn();
 
 
-            }
-        });
-
-
+                }
+            });
 
     }
 

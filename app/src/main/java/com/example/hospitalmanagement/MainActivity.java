@@ -202,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
                             else if(ParentDbname.equals("Doctor")){
                                 loadingBar.dismiss();
                                 Intent intent = new Intent(MainActivity.this,DoctorActivity.class);
+                                intent.putExtra("Doctor Name",userData.getName());
                                 startActivity(intent);
                             }
                             else if(ParentDbname.equals("Ceo")){

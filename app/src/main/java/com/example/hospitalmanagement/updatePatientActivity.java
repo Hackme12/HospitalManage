@@ -25,7 +25,6 @@ public class updatePatientActivity extends AppCompatActivity {
     private String name, address, dob, phonenumber,  email, patientId;
     private TextView tvName;
     private Button btnUpdate,btnNext;
-    private FirebaseDatabase database;
     private DatabaseReference reference;
 
 
@@ -43,17 +42,10 @@ public class updatePatientActivity extends AppCompatActivity {
         edEmail = (EditText)findViewById(R.id.edEmail);
         btnUpdate = (Button)findViewById(R.id.btnUpdate) ;
 
-        database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         reference = database.getReference("Patient");
         btnNext.setVisibility(View.INVISIBLE);
         setInfo();
-
-
-
-
-
-
-
 
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -149,14 +141,18 @@ public class updatePatientActivity extends AppCompatActivity {
             edDob.setKeyListener(null);
             btnNext.setVisibility(View.VISIBLE);
             btnUpdate.setVisibility(View.INVISIBLE);
+            btnNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(updatePatientActivity.this,PatientChartTwo.class);
+                    intent.putExtra("PatientId",patientId);
+                    startActivity(intent);
+                }
+            });
         }
 
     }
 
-    private void DialogBox() {
-        Toast.makeText(updatePatientActivity.this, "Successfully I am here", Toast.LENGTH_SHORT).show();
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -170,7 +166,6 @@ public class updatePatientActivity extends AppCompatActivity {
             case (R.id.Logout):
                 Intent intent = new Intent(updatePatientActivity.this,MainActivity.class);
                 startActivity(intent);
-
                 break;
 
             default:
