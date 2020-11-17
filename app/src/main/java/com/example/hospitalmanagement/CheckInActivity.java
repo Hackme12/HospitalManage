@@ -83,9 +83,6 @@ public class CheckInActivity extends AppCompatActivity {
 
 
 
-
-
-
     private void setInfo() {
         Intent intent = getIntent();
         name = intent.getStringExtra("pname");
@@ -178,10 +175,6 @@ public class CheckInActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
 
 
     @Override

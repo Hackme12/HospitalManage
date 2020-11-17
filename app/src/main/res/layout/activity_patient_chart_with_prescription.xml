@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorAccent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -27,7 +28,7 @@
         </de.hdodenhof.circleimageview.CircleImageView>
 
 
-        <TextView
+        <EditText
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,15 +43,18 @@
 
 
     <RelativeLayout
+        android:id="@+id/reativeLayout"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
         android:layout_below="@+id/linear_layout1"
+        android:background="#FFFFFF"
         android:layout_marginTop="0dp"
 
         >
 
 
-        <TextView
+        <EditText
             android:id="@+id/tvAddress"
             android:layout_width="match_parent"
             android:layout_height="65dp"
@@ -60,7 +64,7 @@
             android:paddingTop="30dp"
 
             />
-        <TextView
+        <EditText
             android:id="@+id/tvDob"
             android:layout_width="match_parent"
             android:layout_height="65dp"
@@ -71,7 +75,7 @@
             android:textAlignment="center" />
 
 
-        <TextView
+        <EditText
             android:id="@+id/tvPhone"
             android:layout_width="match_parent"
             android:layout_height="65dp"
@@ -83,7 +87,7 @@
 
 
 
-        <TextView
+        <EditText
             android:id="@+id/tvEmail"
             android:layout_width="match_parent"
             android:layout_height="65dp"
@@ -96,6 +100,7 @@
         <LinearLayout
             android:id="@+id/inside_layout"
             android:layout_width="match_parent"
+            android:layout_marginEnd="10dp"
             android:layout_height="65dp"
             android:orientation="horizontal"
             android:layout_below="@+id/tvEmail"
@@ -103,26 +108,26 @@
             >
             <TextView
 
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:text="Weight:"
                 android:textAlignment="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
             </TextView>
-            <TextView
+            <EditText
                 android:id="@+id/tvWeight"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:hint="lb"
                 android:textAlignment="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
-            </TextView>
+            </EditText>
             <TextView
 
                 android:layout_width="40dp"
@@ -130,22 +135,22 @@
                 android:hint="lb"
                android:layout_marginTop="20dp"
                 android:paddingTop="20dp"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
             </TextView>
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:text="Height:"
                 android:textAlignment="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
             </TextView>
-            <TextView
+            <EditText
                 android:id="@+id/tvHeight"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
@@ -155,7 +160,7 @@
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
-            </TextView>
+            </EditText>
             <TextView
 
                 android:layout_width="45dp"
@@ -186,13 +191,13 @@
             android:layout_height="match_parent"
             android:text="Blood Pressure:"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textColor="#000000"
             android:padding="15dp"
             >
         </TextView>
 
-            <TextView
+            <EditText
                 android:id="@+id/tvShowBP"
                 android:layout_width="165dp"
                 android:layout_height="match_parent"
@@ -202,7 +207,7 @@
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
-            </TextView>
+            </EditText>
             <TextView
 
                 android:layout_width="100dp"
@@ -231,13 +236,13 @@
                 android:layout_height="match_parent"
                 android:text="Reason to Visit:"
                 android:textAlignment="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
             </TextView>
 
-            <TextView
+            <EditText
                 android:id="@+id/tvReason"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -245,7 +250,6 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textAlignment="center"
-                android:layout_margin="10dp"
                 android:inputType="textMultiLine"
                 android:enabled="true"
                 android:minLines="4"
@@ -267,9 +271,9 @@
 
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
-                android:text="     Prescription:"
+                android:text="Prescription:"
                 android:textAlignment="center"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
@@ -283,7 +287,6 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textAlignment="center"
-                android:layout_margin="10dp"
                 android:inputType="textMultiLine"
                 android:enabled="true"
                 android:minLines="4"
@@ -292,45 +295,20 @@
                 android:focusable="true"
                 tools:ignore="TextViewEdits" />
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/inside_layout4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/inside_layout3"
-
-
-            >
-            <Button
-                android:id="@+id/btn_ok"
-                android:layout_width="200dp"
-                android:layout_height="65dp"
-                android:layout_below="@+id/inside_layout3"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="96dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/colorAccent"
-                android:text="OK" />
-            <Button
-                android:id="@+id/btn_done"
-                android:layout_width="200dp"
-                android:layout_height="65dp"
-                android:layout_below="@+id/inside_layout3"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="96dp"
-                android:layout_marginStart="-70dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/colorAccent"
-                android:text="Done" />
-
-
-
-        </LinearLayout>
-
 
     </RelativeLayout>
+    <Button
+        android:id="@+id/btn_done_update"
+        android:layout_width="180dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="610dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="30dp"
+        android:background="#285AAE"
+        android:text="Done" />
+
 
 
 </RelativeLayout>

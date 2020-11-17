@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,9 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class AppointmentList extends AppCompatActivity {
 
@@ -46,8 +50,6 @@ public class AppointmentList extends AppCompatActivity {
    private ProgressDialog loadingBar;
     AppointmentInformation AppInform;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,26 +61,41 @@ public class AppointmentList extends AppCompatActivity {
         reference = database.getReference().child("AppointmentList");
         loadingBar = new ProgressDialog(this);
         list = new ArrayList<>();
+        Calendar c = Calendar.getInstance();
+        final String Currentdate = DateFormat.getDateInstance().format(c.getTime());
+        DateFormat df = new SimpleDateFormat("HH:mm");
+       final String CurrentTime = df.format(c.getTime());
+        System.out.println(df.format(c.getTime()));
+        final String hour = CurrentTime.substring(0,2);
+        System.out.println(hour);
+
+        System.out.println(CurrentTime);
+
 
         adapter = new ArrayAdapter<>(AppointmentList.this, R.layout.appointmentlist,
                 R.id.tvAppointmentList, list);
+
 
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                //DateFormat df = new SimpleDateFormat("HH:mm");
+                //System.out.println(df.format(c.getTime()));
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     AppInform = ds.getValue(AppointmentInformation.class);
-                    list.add("  " + AppInform.getPatientName() + "               " +
-                            AppInform.getDate() + "\n                                           " + AppInform.getTime());
+                    if((AppInform.getDate().equals(Currentdate))){
+                        list.add("  " + AppInform.getPatientName() + "               " +
+                                AppInform.getDate() + "\n                                           " + AppInform.getTime());
+                    }
+                    else if(!AppInform.getDate().equals(Currentdate)&&(!(AppInform.getDate().compareTo(Currentdate)>0))){
+                        reference.removeValue();
+                    }
 
                 }
-
                     listView.setAdapter(adapter);
                 }
-
-                //listView.setAdapter(adapter);
 
 
             @Override
@@ -88,20 +105,17 @@ public class AppointmentList extends AppCompatActivity {
         });
 
 
-
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    DialogCheckIn();
-
+                    CheckIn();
 
                 }
             });
-
     }
 
 
-        private void DialogCheckIn() {
+        private void CheckIn() {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(AppointmentList.this);
             View view = LayoutInflater.from(AppointmentList.this).inflate(R.layout.dialogupdatepatientinfo, null);

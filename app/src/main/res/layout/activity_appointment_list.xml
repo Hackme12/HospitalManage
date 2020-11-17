@@ -10,6 +10,7 @@
         android:layout_height="fill_parent"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:background="#D9EA40"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
@@ -18,6 +19,7 @@
             android:id="@+id/list"
             android:cacheColorHint="#00000000"
             android:scrollbars="none"
+            android:background="#2FF8E3"
             android:fadingEdge="vertical"
             android:soundEffectsEnabled="true"
             android:dividerHeight="1px"

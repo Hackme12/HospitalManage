@@ -61,7 +61,6 @@ public class AddPatient extends AppCompatActivity {
 
 
 
-
     }
 
     private void CreatePatientChart() {
@@ -93,8 +92,8 @@ public class AddPatient extends AppCompatActivity {
             loadingBar.setMessage("Please Wait while creating patient chart");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-
             UpdatePatientInfoIntoDatabase(PatientID, Name,DOB,Address,Email,Phone,SocialSN);
+
 
         }
 
@@ -152,10 +151,9 @@ public class AddPatient extends AppCompatActivity {
 
                 else{
                     loadingBar.dismiss();
-                    Toast.makeText(AddPatient.this, "There is already an Patient chart with this "+ PatientID + " Or "+ socialSN+ ". \n Please Go ahead and make an appointment!!", Toast.LENGTH_SHORT).show();
-
-
-                    /// send it to the appointment file.
+                    Toast.makeText(AddPatient.this, "There is already an Patient chart with this "+ PatientID +  ". \n Please Go ahead and make an appointment!!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddPatient.this,Appointment.class);
+                    startActivity(intent);
 
                 }
 

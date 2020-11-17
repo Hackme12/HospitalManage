@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -115,12 +116,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             loadingBar.setMessage("Please wait while checking your credentials");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            UpdateInfoToDatabase(Name, Dob, Email, UserId, Password, Confirm_Password);
+            UpdateLoginInfoToDatabase(Name, Dob, Email, UserId, Password, Confirm_Password);
 
         }
     }
 
-    public void UpdateInfoToDatabase(final String Name, final String Dob, final String Email, final String UserId, final String Password, final String Confirm_Password) {
+    public void UpdateLoginInfoToDatabase(final String Name, final String Dob, final String Email, final String UserId, final String Password, final String Confirm_Password) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
@@ -168,6 +169,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                String errorMessage = error.getMessage();
+                System.out.println(errorMessage);
 
             }
         });

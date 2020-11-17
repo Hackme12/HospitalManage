@@ -138,8 +138,6 @@ public class CancelAppointment extends AppCompatActivity {
 
               if(snapshot.child("AppointmentList").child(key).exists()){
 
-
-
                   loadingBar.dismiss();
                    //AppointmentInformation API = snapshot.child("AppointmentList").child(key).getValue(AppointmentInformation.class);
                    DatabaseReference drKey = database.getReference("AppointmentList").child(key);
@@ -148,8 +146,6 @@ public class CancelAppointment extends AppCompatActivity {
 
                }
 
-
-
             }
 
             @Override
@@ -157,10 +153,6 @@ public class CancelAppointment extends AppCompatActivity {
 
             }
         });
-
-
-
-
 
     }
     @Override

@@ -36,7 +36,7 @@ public class DoctorActivity extends AppCompatActivity {
     AppointmentInformation APPI;
     String PatientId;
 
-    String drId;
+    String drName,drId;
 
 
     @Override
@@ -52,11 +52,20 @@ public class DoctorActivity extends AppCompatActivity {
 
         patientList = new ArrayList<>();
         adapter = new ArrayAdapter<>(DoctorActivity.this, R.layout.appointmentlist, R.id.tvAppointmentList, patientList);
+
+        DisplayAppointment();
+
+
+
+    }
+
+    public void DisplayAppointment(){
         Calendar c = Calendar.getInstance();
         final String CurrentDate = DateFormat.getDateInstance().format(c.getTime());
 
         Intent intent = getIntent();
-        drId = intent.getStringExtra("Doctor Name");
+        drName = intent.getStringExtra("Doctor Name");
+        drId = intent.getStringExtra("DoctorID");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,24 +73,18 @@ public class DoctorActivity extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     APPI = item.getValue(AppointmentInformation.class);
-                   // System.out.println("        *************"+APPI.getDate() +"date" +CurrentDate  + "drId"+drId   +"  "+APPI.getDoctorName());
-                    if (APPI.getDate().equals(CurrentDate) && (APPI.getDoctorName().equals(drId)))
+                    // System.out.println("        *************"+APPI.getDate() +"date" +CurrentDate  + "drId"+drId   +"  "+APPI.getDoctorName());
+                    if (APPI.getDate().equals(CurrentDate) && (APPI.getDoctorName().equals(drName)))
                     {
                         patientList.add(" " + APPI.getPatientName());
-
-
                     } else {
-                        Toast.makeText(DoctorActivity.this, "There is no patient today", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DoctorActivity.this, "", Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
                 list.setAdapter(adapter);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
@@ -94,9 +97,8 @@ public class DoctorActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
+
 
     private void gettingDetailOfPatient(final String selected_patient) {
         DatabaseReference myref = database.getReference().child("AppointmentList");
@@ -108,14 +110,16 @@ public class DoctorActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot item: snapshot.getChildren()){
                     APPI = item.getValue(AppointmentInformation.class);
-                    if(APPI.getDoctorName().equals(drId)&&
+                    if(APPI.getDoctorName().equals(drName)&&
                             (APPI.getPatientName().equals(selected_patient)&&APPI.getDate().equals(CDate))){
                         PatientId = APPI.patientId;
                         break;
                     }
                 }
                 Intent intent = new Intent (DoctorActivity.this,PatientChartWithPrescription.class);
+                intent.putExtra("DrName",drName);
                 intent.putExtra("PatientId",PatientId);
+                intent.putExtra("DoctorId",drId);
                 startActivity(intent);
             }
 

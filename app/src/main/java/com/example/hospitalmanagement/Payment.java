@@ -32,26 +32,20 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-          database = FirebaseDatabase.getInstance();
-
+        database = FirebaseDatabase.getInstance();
         patientId = (EditText)findViewById(R.id.edPatientId);
         cardNumber = (EditText)findViewById(R.id.edCardNumber);
         expDate = (EditText)findViewById(R.id.edExpiredate);
         amount = (EditText)findViewById(R.id.edPaymentAmount);
 
-
         btnPayNow = (Button)findViewById(R.id.btn_payment);
-
-
         btnPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String PateintID = patientId.getText().toString();
                 String CardNumber= cardNumber.getText().toString();
                 String expdate= expDate.getText().toString();
                 String PayAmnt= amount.getText().toString();
-
 
                 if(TextUtils.isEmpty(PateintID)){
                     Toast.makeText(Payment.this, "Please Enter Patient Id", Toast.LENGTH_SHORT).show();
@@ -67,7 +61,7 @@ public class Payment extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(Payment.this,"Authorization of card",Toast.LENGTH_LONG).show();
-                    Validate(PateintID,PayAmnt);
+                    Payment(PateintID,PayAmnt);
 
                 }
 
@@ -79,33 +73,24 @@ public class Payment extends AppCompatActivity {
 
     }
 
-    private void Validate(final String pateintID, final String PayAmnt) {
+    private void Payment(final String patientID, final String PayAmnt) {
 
         DatabaseReference reference = database.getReference();
 
-
         final Calendar c = Calendar.getInstance();
         String cdate = DateFormat.getDateInstance().format(c.getTime());
-        final String key = pateintID+":"+cdate;
+        final String key = patientID + ":" + cdate;
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child("AppointmentList").child(key).exists()){
                     DatabaseReference myref1 = database.getReference();
-                    myref1.child("Patient").child(pateintID).child("Payment Profile").
+                    myref1.child("Patient").child(patientID).child("Payment Profile").
                             child("Payment Amount").setValue(PayAmnt);
-                    DatabaseReference drKey = database.getReference("AppointmentList").child(key);
-                    drKey.removeValue();
-
-
-
-
                     Toast.makeText(Payment.this, "Payment Successful", Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(Payment.this,StaffActivity.class);
                     startActivity(intent);
-
 
                 }
                 else{

@@ -84,7 +84,9 @@ public class Appointment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 temp = "Change";
-                DialogCheckPatient();
+                Intent intent = new Intent(Appointment.this, AppointmentList.class);
+                intent.putExtra("ChangeAppointment",temp);
+                startActivity(intent);
             }
 
 
@@ -164,13 +166,11 @@ public class Appointment extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(Full_Name)) {
                     Toast.makeText(Appointment.this, "Please Enter Date Of Birth", Toast.LENGTH_SHORT).show();
                 } else {
-
                     loadingBar.setTitle("Message");
                     loadingBar.setMessage("Please wait while checking your credentials");
                     loadingBar.setCanceledOnTouchOutside(false);
                     loadingBar.show();
-                    ValidatePatientAppointment(Patient_ID, Full_Name, Date_of_birth);
-
+                    ValidatePatientInfoOnAppointment(Patient_ID, Full_Name, Date_of_birth);
                 }
             }
         });
@@ -187,7 +187,7 @@ public class Appointment extends AppCompatActivity {
 
     }
 
-    private void ValidatePatientAppointment(final String patientId, final String fullName, final String Dob) {
+    private void ValidatePatientInfoOnAppointment(final String patientId, final String fullName, final String Dob) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
@@ -198,27 +198,24 @@ public class Appointment extends AppCompatActivity {
                     PatientInfo patientData = datasnapshot.child("Patient").child(patientId).child("Personal Information").getValue(PatientInfo.class);
 
                     if ((patientId.equals(patientData.getPatientID())) && (fullName.equals(patientData.getName()))
-                            && (Dob.equals(patientData.getDateOfBirth()))) {
+                            && (Dob.equals(patientData.getDateOfBirth())) && temp.equals("Create"))
+                    {
 
                         loadingBar.dismiss();
                         Intent intent = new Intent(Appointment.this, SelectDate.class);
                         intent.putExtra("Name", fullName);
                         intent.putExtra("PatientId",patientId);
+                        intent.putExtra("Temp","Create");
                         startActivity(intent);
-                        }
-
-
+                    }
                 } else
                     {
                     loadingBar.dismiss();
                     Toast.makeText(Appointment.this, "patientId Doesn't Exist", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Appointment.this, StaffActivity.class);
                     startActivity(intent);
-
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

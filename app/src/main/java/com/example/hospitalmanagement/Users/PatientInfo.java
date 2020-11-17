@@ -16,8 +16,7 @@ public class PatientInfo {
     }
 
 
-    public PatientInfo(String patientID, String name, String socialSecurityNumber,
-                       String Address, String phoneNumber, String dateOfBirth, String emailId, String BloodPressure, String Height,
+    public PatientInfo(String patientID, String name, String socialSecurityNumber, String Address, String phoneNumber, String dateOfBirth, String emailId, String BloodPressure, String Height,
                        String Reason, String Visit_Date, String Weight) {
         PatientID = patientID;
         Name = name;
