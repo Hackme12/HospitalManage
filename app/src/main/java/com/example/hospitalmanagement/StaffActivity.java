@@ -180,6 +180,7 @@ public class StaffActivity extends AppCompatActivity {
                         intent.putExtra("pPhone",cPatient.getPhoneNumber());
                         intent.putExtra("pDateofBirth",cPatient.getDateOfBirth());
                         intent.putExtra("pEmail",cPatient.getEmailId());
+                        intent.putExtra("insuranceName",cPatient.getInsuranceName());
                         intent.putExtra("Message","editTrue");
 
                         startActivity(intent);

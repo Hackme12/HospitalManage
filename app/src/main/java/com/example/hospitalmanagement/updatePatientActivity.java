@@ -21,8 +21,8 @@ import java.util.Objects;
 
 public class updatePatientActivity extends AppCompatActivity {
 
-    private EditText edName,edAddress,edDob,edPhonenumber,edEmail;
-    private String name, address, dob, phonenumber,  email, patientId;
+    private EditText edName,edAddress,edDob,edPhonenumber,edEmail,edInsurance;
+    private String name, address, dob, phonenumber,  email, patientId,Insurance;
     private TextView tvName;
     private Button btnUpdate,btnNext;
     private DatabaseReference reference;
@@ -40,6 +40,7 @@ public class updatePatientActivity extends AppCompatActivity {
         tvName = (TextView) findViewById(R.id.tvName);
         btnNext = (Button)findViewById(R.id.btnNext) ;
         edEmail = (EditText)findViewById(R.id.edEmail);
+        edInsurance = (EditText)findViewById(R.id.edInsurance);
         btnUpdate = (Button)findViewById(R.id.btnUpdate) ;
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -121,6 +122,7 @@ public class updatePatientActivity extends AppCompatActivity {
         dob = intent.getStringExtra("pDateofBirth");
         email = intent.getStringExtra("pEmail");
         patientId = intent.getStringExtra("Id");
+        Insurance = intent.getStringExtra("InsuranceName");
 
 
 
@@ -130,6 +132,7 @@ public class updatePatientActivity extends AppCompatActivity {
         edAddress.setText(address);
         edPhonenumber.setText(phonenumber);
         edDob.setText(dob);
+        edInsurance.setText(Insurance);
 
         if(Objects.equals(intent.getStringExtra("Message"), "editFalse")){
 

@@ -27,7 +27,7 @@ import java.util.HashMap;
 public class AddPatient extends AppCompatActivity {
 
     private EditText name, dateOfBirth,address;
-    private EditText emailId, phoneNumber,SSN;
+    private EditText emailId, phoneNumber,SSN, Insurance_provider;
     private EditText patientId;
     private Button btnAddPatient;
     private ProgressDialog loadingBar;
@@ -45,6 +45,7 @@ public class AddPatient extends AppCompatActivity {
         emailId = (EditText)findViewById(R.id.email_id);
         phoneNumber = (EditText)findViewById(R.id.phone_number);
         SSN = (EditText)findViewById(R.id.SSN);
+        Insurance_provider = (EditText)findViewById(R.id.insurance_provider);
         patientId = (EditText)findViewById(R.id.patientID);
         loadingBar = new ProgressDialog(this);
 
@@ -70,6 +71,7 @@ public class AddPatient extends AppCompatActivity {
         String Email = emailId.getText().toString().trim();
         String Phone = phoneNumber.getText().toString().trim();
         String SocialSN = SSN.getText().toString().trim();
+        String Insurance_name = Insurance_provider.getText().toString().trim();
         String PatientID = patientId.getText().toString().trim();
 
         if((TextUtils.isEmpty(Name))&& (TextUtils.isEmpty(DOB))
@@ -92,7 +94,7 @@ public class AddPatient extends AppCompatActivity {
             loadingBar.setMessage("Please Wait while creating patient chart");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            UpdatePatientInfoIntoDatabase(PatientID, Name,DOB,Address,Email,Phone,SocialSN);
+            UpdatePatientInfoIntoDatabase(PatientID, Name,DOB,Address,Email,Phone,SocialSN, Insurance_name);
 
 
         }
@@ -101,7 +103,7 @@ public class AddPatient extends AppCompatActivity {
     }
 
     private void UpdatePatientInfoIntoDatabase(final String PatientID, final String name, final String dob, final String address,
-                                               final String email, final String phone, final String socialSN)
+                                               final String email, final String phone, final String socialSN, final String InsuranceProvider)
     {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
@@ -122,6 +124,7 @@ public class AddPatient extends AppCompatActivity {
                     patientData.put("EmailId", email);
                     patientData.put("Address", address);
                     patientData.put("DateOfBirth", dob);
+                    patientData.put("InsuranceProvider",InsuranceProvider);
                     patientData.put("Name", name);
                     patientData.put("PatientID", PatientID);
 

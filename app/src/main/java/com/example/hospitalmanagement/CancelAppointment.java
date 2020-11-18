@@ -8,7 +8,6 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +17,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.hospitalmanagement.Users.AppointmentInformation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
-import java.time.Year;
+
 import java.util.Calendar;
 
 public class CancelAppointment extends AppCompatActivity {
@@ -168,8 +166,11 @@ public class CancelAppointment extends AppCompatActivity {
         switch (item.getItemId()){
             case (R.id.Logout):
                 Intent intent = new Intent(CancelAppointment.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-
+                finish();
                 break;
 
             default:

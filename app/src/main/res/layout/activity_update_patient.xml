@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linear_layout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:background="@color/colorAccent"
         android:orientation="horizontal">
 
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/linear_layout1"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="0dp"
 
         >
 
@@ -63,7 +63,7 @@
         <EditText
             android:id="@+id/edAddress"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/edfullName"
             android:drawableLeft="@drawable/iconaddress"
             android:hint="Address"
@@ -74,7 +74,7 @@
         <EditText
             android:id="@+id/edPhone"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/edAddress"
             android:drawableLeft="@drawable/iconphone"
             android:hint="Phone Number"
@@ -83,7 +83,7 @@
         <EditText
             android:id="@+id/edDob"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/edPhone"
             android:drawableLeft="@drawable/ic_baseline_date_range_24"
             android:hint="Date of Birth"
@@ -92,19 +92,28 @@
         <EditText
             android:id="@+id/edEmail"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/edDob"
             android:drawableLeft="@drawable/ic_baseline_date_range_24"
             android:hint="Email"
             android:textAlignment="center" />
+        <EditText
+            android:id="@+id/edInsurance"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/edEmail"
+            android:drawableLeft="@drawable/ic_baseline_date_range_24"
+            android:hint="Insurance"
+            android:textAlignment="center" />
+
 
 
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_below="@+id/edEmail"
-            android:layout_margin="30dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/edInsurance"
+            android:layout_margin="20dp"
             android:background="@color/colorAccent"
             android:text="Update"
 
@@ -113,9 +122,9 @@
         <Button
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/btnUpdate"
-            android:layout_margin="30dp"
+            android:layout_margin="20dp"
             android:background="@color/colorAccent"
             android:text="Next"
 

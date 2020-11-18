@@ -190,8 +190,11 @@ public class CheckInActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case (R.id.Logout):
                 Intent intent = new Intent(CheckInActivity.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-
+                finish();
                 break;
 
             default:
