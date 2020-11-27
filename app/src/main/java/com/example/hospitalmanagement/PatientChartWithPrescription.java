@@ -33,8 +33,9 @@ import java.util.HashMap;
 public class PatientChartWithPrescription extends AppCompatActivity {
 
     EditText tvName,tvAddress, tvDob,tvEmail,tvPhone,tvWeight,tvHeight,tvBp,tvReasonToVisit;
-    String  stName, stAddress, stDob, stEmail, stPhone, stWeight, stHeight, stBp,stReason;
+    protected String  stName, stAddress, stDob, stEmail, stPhone, stWeight, stHeight, stBp,stReason;
     EditText edAddPrescription;
+    EditText edTreatmentRecord;
     Button btn_done;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -43,6 +44,7 @@ public class PatientChartWithPrescription extends AppCompatActivity {
    String patientID;
    String DrName, DrId;
     String Prescription;
+    String TreatmentRecord;
     DailyReport dailyreport;
     ProgressDialog loadingBar;
 
@@ -60,6 +62,7 @@ public class PatientChartWithPrescription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             Prescription = edAddPrescription.getText().toString();
+            TreatmentRecord = edTreatmentRecord.getText().toString();
 
 
                 if (TextUtils.isEmpty(Prescription))
@@ -67,7 +70,11 @@ public class PatientChartWithPrescription extends AppCompatActivity {
                     Toast.makeText(PatientChartWithPrescription.this,
                             "Please Add Prescription!!!", Toast.LENGTH_SHORT)
                             .show();
-
+                }
+                else if(TextUtils.isEmpty(TreatmentRecord)){
+                    Toast.makeText(PatientChartWithPrescription.this,
+                            "Please Add Treatment Record!!!", Toast.LENGTH_SHORT)
+                            .show();
                 }
                 else
                 {
@@ -77,8 +84,12 @@ public class PatientChartWithPrescription extends AppCompatActivity {
                     updateDateofbirthchanged();
                     updateAddressChanged();
                     updateEmailchanged();
-                    updateisNameChanged();
+                    updateNameChanged();
                     updatePhonenumberchanged();
+                    updateHeightChanged();
+                    updateWeightChanged();
+                    updateBPChanged();
+                    updateVisitReasonChanged();
                     CheckPatient();
                 }
 
@@ -95,9 +106,9 @@ public class PatientChartWithPrescription extends AppCompatActivity {
         tvPhone = (EditText) findViewById(R.id.tvPhone);
         tvWeight = (EditText) findViewById(R.id.tvWeight);
         tvHeight = (EditText) findViewById(R.id.tvHeight);
-        tvBp = (EditText) findViewById(R.id.tvShowBP);
         tvReasonToVisit = (EditText) findViewById(R.id.tvReason);
         edAddPrescription = (EditText) findViewById(R.id.edPrescription);
+        edTreatmentRecord = (EditText)findViewById(R.id.edTreatment);
         btn_done = (Button) findViewById(R.id.btn_done_update);
         patientInfo = new PatientInfo();
         database = FirebaseDatabase.getInstance();
@@ -113,26 +124,27 @@ public class PatientChartWithPrescription extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 patientInfo = snapshot.child("Patient").child(patientID).child("Personal Information").getValue(PatientInfo.class);
-                patientDetails = snapshot.child("Patient").child(patientID).child("Details").getValue(PatientInfo.class);
-                stName = (patientInfo.getName());
-                stAddress = (patientInfo.getAddress());
-                stDob = (patientInfo.getDateOfBirth());
-                stPhone = (patientInfo.getPhoneNumber());
-                stEmail = (patientInfo.getEmailId());
-                stWeight = (patientDetails).getWeight();
-                stHeight = (patientDetails).getHeight();
-                stBp = (patientDetails).getBloodPressure();
-                stReason = (patientDetails).getReason();
-                tvName.setText(stName);
-                tvAddress.setText(stAddress);
-                tvDob.setText(stDob);
-                tvPhone.setText(stPhone);
-                tvEmail.setText(stEmail);
-                tvWeight.setText(stWeight);
-                tvHeight.setText(stHeight);
-                tvBp.setText(stBp);
-                tvReasonToVisit.setText(stReason);
-
+                patientDetails = snapshot.child("Patient").child(patientID).child("Measurement").getValue(PatientInfo.class);
+              {
+                    stName = (patientInfo.getName());
+                    stAddress = (patientInfo.getAddress());
+                    stDob = (patientInfo.getDateOfBirth());
+                    stPhone = (patientInfo.getPhoneNumber());
+                    stEmail = (patientInfo.getEmailId());
+                    stWeight = (patientDetails).getWeight();
+                    stHeight = (patientDetails).getHeight();
+                    stBp = (patientDetails).getBloodPressure();
+                    stReason = (patientDetails).getReason();
+                    tvName.setText(stName);
+                    tvAddress.setText(stAddress);
+                    tvDob.setText(stDob);
+                    tvPhone.setText(stPhone);
+                    tvEmail.setText(stEmail);
+                    tvWeight.setText(stWeight);
+                    tvHeight.setText(stHeight);
+                    tvBp.setText(stBp);
+                    tvReasonToVisit.setText(stReason);
+                }
 
             }
 
@@ -172,31 +184,65 @@ public class PatientChartWithPrescription extends AppCompatActivity {
         }
     }
 
-    private void updateisNameChanged() {
+    private void updateNameChanged() {
         if (stName.equals(tvName.getEditableText().toString())) {
             reference.child("Patient").child(patientID).child("Personal Information").
                     child("Name").setValue(tvName.getEditableText().toString());
         }
     }
 
+    private void updateWeightChanged() {
+        if (!stWeight.equals(tvWeight.getEditableText().toString())) {
+            reference.child("Patient").child(patientID).child("Details").
+                    child("Weight").setValue(tvWeight.getEditableText().toString());
+        }
+    }
+    private void updateHeightChanged() {
+        if (!stHeight.equals(tvHeight.getEditableText().toString())) {
+            reference.child("Patient").child(patientID).child("Details").
+                    child("Height").setValue(tvHeight.getEditableText().toString());
+        }
+    }
+    private void updateBPChanged() {
+        if (!stBp.equals(tvBp.getEditableText().toString())) {
+            reference.child("Patient").child(patientID).child("Details").
+                    child("BloodPressure").setValue(tvBp.getEditableText().toString());
+        }
+    }
+    private void updateVisitReasonChanged() {
+        if (!stBp.equals(tvBp.getEditableText().toString())) {
+            reference.child("Patient").child(patientID).child("Details").
+                    child("Reason").setValue(tvReasonToVisit.getEditableText().toString());
+        }
+    }
+
+
+
     public void CheckPatient() {
         AlertDialog.Builder builder = new AlertDialog.Builder(PatientChartWithPrescription.this);
         builder.setTitle("WARNING!!!");
-        builder.setMessage("If you click 'YES' you will not be edit and go back to patient chart again. \n if you click 'NO' you" +
+        builder.setMessage("If you click 'YES' you will not be able to edit and go back to patient chart again. " +
+                "\n if you click 'NO' you" +
                 "will be directed to patient chart");
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 final Calendar c = Calendar.getInstance();
                 int count = 0;
+                double amount = 0.0;
                 final String cdate = DateFormat.getDateInstance().format(c.getTime());
                 final String key = patientID + ":" + cdate;
                 DatabaseReference removeAppoint = database.getReference("AppointmentList").child(key);
                 removeAppoint.removeValue();
                 //DatabaseReference removeDoctorSchedule = database.getReference("Doctors Schedule");
-                reference.child("Patient").child(patientID).child("Prescription").
+                reference.child("Patient").child(patientID).child("Treatment Info").child("Prescription").
                         setValue(Prescription);
+                reference.child("Patient").child(patientID).child("Treatment Info").child("Treatment Record").
+                        setValue(TreatmentRecord);
+
+
                 final int finalCount = count;
+                final double amountEarned = amount;
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -205,6 +251,7 @@ public class PatientChartWithPrescription extends AppCompatActivity {
                         if (!snapshot.child("DailyReport").child(key).exists()) {
                             HashMap<String, Object> dailyreport = new HashMap<>();
                             dailyreport.put("TotalPatientVisitToday", finalCount + 1);
+                            dailyreport.put("Total_Amount",amountEarned+100.00);
                             dailyreport.put("DrName", DrName);
                             dailyreport.put("DrId", DrId);
                             dailyreport.put("date", cdate);
@@ -225,6 +272,7 @@ public class PatientChartWithPrescription extends AppCompatActivity {
                         } else {
 
                             reference.child("DailyReport").child(key).child("TotalPatientVisitToday").setValue(dailyreport.getTotalPatientVisitToday() + 1);
+                            reference.child("DailyReport").child(key).child("Total_Amount").setValue(dailyreport.getTotal_Amount() + 100);
                             Intent intent = new Intent(PatientChartWithPrescription.this, DoctorActivity.class);
                             startActivity(intent);
                         }

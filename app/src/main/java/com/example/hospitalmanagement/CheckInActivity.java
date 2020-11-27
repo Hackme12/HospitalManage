@@ -157,7 +157,7 @@ public class CheckInActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
 
 
-               Intent intent = new Intent(CheckInActivity.this,Payment.class);
+               Intent intent = new Intent(CheckInActivity.this,PaymentType.class);
                startActivity(intent);
 
 
@@ -175,6 +175,8 @@ public class CheckInActivity extends AppCompatActivity {
 
 
     }
+
+    
 
 
     @Override

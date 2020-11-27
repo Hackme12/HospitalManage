@@ -22,7 +22,13 @@ import java.util.Objects;
 public class updatePatientActivity extends AppCompatActivity {
 
     private EditText edName,edAddress,edDob,edPhonenumber,edEmail,edInsurance;
-    private String name, address, dob, phonenumber,  email, patientId,Insurance;
+    private String name;
+    private String address;
+    private String dob;
+    private String phonenumber;
+    private String email;
+    private String patientId;
+    private  String insurance;
     private TextView tvName;
     private Button btnUpdate,btnNext;
     private DatabaseReference reference;
@@ -54,9 +60,12 @@ public class updatePatientActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                if(isNameChanged()||isAddressChanged()||isPhonenumberchanged()||isEmailchanged()|| isDateofbirthchanged()){
+                if(isNameChanged()||isAddressChanged()||isPhonenumberchanged()||isEmailchanged()|| isInsuranceChanged()||isDateofbirthchanged()){
 
                     Toast.makeText(updatePatientActivity.this, "Successfully changed", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(updatePatientActivity.this,StaffActivity.class);
+                    startActivity(intent);
+                    finish();
 
                 }
                 else{
@@ -67,6 +76,14 @@ public class updatePatientActivity extends AppCompatActivity {
         });
 
 
+    }
+    private boolean isInsuranceChanged() {
+        if(!insurance.equals(edInsurance.getEditableText().toString())){
+            reference.child(patientId).child("Personal Information").
+                    child("InsuranceProvider").setValue(edInsurance.getEditableText().toString());
+            return true;
+        }
+        return false;
     }
 
     private boolean isDateofbirthchanged() {
@@ -122,7 +139,8 @@ public class updatePatientActivity extends AppCompatActivity {
         dob = intent.getStringExtra("pDateofBirth");
         email = intent.getStringExtra("pEmail");
         patientId = intent.getStringExtra("Id");
-        Insurance = intent.getStringExtra("InsuranceName");
+        insurance = intent.getStringExtra("InsuranceName");
+
 
 
 
@@ -132,7 +150,7 @@ public class updatePatientActivity extends AppCompatActivity {
         edAddress.setText(address);
         edPhonenumber.setText(phonenumber);
         edDob.setText(dob);
-        edInsurance.setText(Insurance);
+        edInsurance.setText(insurance);
 
         if(Objects.equals(intent.getStringExtra("Message"), "editFalse")){
 
@@ -142,6 +160,7 @@ public class updatePatientActivity extends AppCompatActivity {
             edAddress.setKeyListener(null);
             edPhonenumber.setKeyListener(null);
             edDob.setKeyListener(null);
+            edInsurance.setKeyListener(null);
             btnNext.setVisibility(View.VISIBLE);
             btnUpdate.setVisibility(View.INVISIBLE);
             btnNext.setOnClickListener(new View.OnClickListener() {

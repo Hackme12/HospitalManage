@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PatientChartWithPrescription"></activity>
+        <activity android:name=".CeoMenu"></activity>
+        <activity android:name=".CashPayment" />
+        <activity android:name=".PaymentType" />
+        <activity android:name=".PatientChartWithPrescription" />
         <activity android:name=".PatientChartTwo" />
         <activity android:name=".Payment" />
         <activity android:name=".CheckInActivity" />

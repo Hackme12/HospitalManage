@@ -150,7 +150,7 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
                     loadingBar.setMessage("Please Wait while checking the Appointment Time");
                     loadingBar.setCanceledOnTouchOutside(false);
                     loadingBar.show();
-                    checkAppointment(appointment_date,appointment_time,doctor_name,Patient_name,Patient_ID);
+                    createAppointment(appointment_date,appointment_time,doctor_name,Patient_name,Patient_ID);
                 }
             }
         });
@@ -165,7 +165,7 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
             }
         });
     }
-    private void checkAppointment(final String date, final String time, final String doctorName, final String patientName, final String patientId) {
+    private void createAppointment(final String date, final String time, final String doctorName, final String patientName, final String patientId) {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
@@ -180,7 +180,7 @@ public class SelectDate extends AppCompatActivity implements AdapterView.OnItemS
                     appointmentData.put("patientName",patientName);
                     appointmentData.put("key", key);
                     appointmentData.put("date",date);
-                    appointmentData.put("timeOfAppointment",time);
+                    appointmentData.put("time",time);
                     appointmentData.put("patientId",patientId);
                     myRef.child("AppointmentList").child(key).updateChildren(appointmentData)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentType">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+        <TextView
+            android:id="@+id/tvselectPayment"
+            android:layout_width="match_parent"
+            android:layout_height="295dp"
+            android:text="Select Payment Type"
+            android:textColor="@drawable/common_google_signin_btn_text_dark"
+            android:textSize="80dp"
+            android:textAlignment="center"
+
+
+            >
+
+        </TextView>
+
+
+       <Button
+           android:id="@+id/btnCash"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+           android:layout_centerHorizontal="true"
+            android:text="CASH"
+            android:background="@color/colorAccent"
+            android:layout_below="@id/tvselectPayment"
+            android:layout_marginTop="40dp">
+
+        </Button>
+        <Button
+            android:id="@+id/btnCreditDebit"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:text="CREDIT/DEBIT"
+            android:background="@color/colorAccent"
+            android:layout_below="@id/btnCash"
+            android:layout_marginTop="20dp">
+
+        </Button>
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

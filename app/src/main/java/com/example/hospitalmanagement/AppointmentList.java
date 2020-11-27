@@ -81,21 +81,33 @@ public class AppointmentList extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                //DateFormat df = new SimpleDateFormat("HH:mm");
-                //System.out.println(df.format(c.getTime()));
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    AppInform = ds.getValue(AppointmentInformation.class);
-                    if((AppInform.getDate().equals(Currentdate))){
-                        list.add("  " + AppInform.getPatientName() + "               " +
-                                AppInform.getDate() + "\n                                           " + AppInform.getTime());
-                    }
-                    else if(!AppInform.getDate().equals(Currentdate)&&(!(AppInform.getDate().compareTo(Currentdate)>0))){
-                        reference.removeValue();
-                    }
 
-                }
+                        DateFormat date = new SimpleDateFormat("HH:mm:ss");
+                        Date dt = new Date();
+                        String currentTime = date.format(dt);
+
+                        int hr = Integer.parseInt(currentTime.substring(0,2));
+                        int min = Integer.parseInt(currentTime.substring(3,5));
+                        int sec = Integer.parseInt(currentTime.substring(6,8));
+
+                     for (DataSnapshot ds : snapshot.getChildren()) {
+                        AppInform = ds.getValue(AppointmentInformation.class);
+                    // Automatic No show clear appointment
+
+                        if(AppInform.getDate().equals(Currentdate)&&((hr >= 20)&& hr<=23)){
+
+                            reference.removeValue();
+                        }
+                        //if(AppInform.getDate().compareTo(Currentdate)<0){
+
+                    //}
+                        else if((AppInform.getDate().equals(Currentdate))){
+                            list.add("  " + AppInform.getPatientName() + "               " +
+                                    AppInform.getDate() + "\n                                           " + AppInform.getTime());
+                        }
+                     }
                     listView.setAdapter(adapter);
-                }
+                    }
 
 
             @Override

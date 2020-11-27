@@ -180,7 +180,7 @@ public class StaffActivity extends AppCompatActivity {
                         intent.putExtra("pPhone",cPatient.getPhoneNumber());
                         intent.putExtra("pDateofBirth",cPatient.getDateOfBirth());
                         intent.putExtra("pEmail",cPatient.getEmailId());
-                        intent.putExtra("insuranceName",cPatient.getInsuranceName());
+                        intent.putExtra("InsuranceName",cPatient.getInsuranceProvider());
                         intent.putExtra("Message","editTrue");
 
                         startActivity(intent);
@@ -219,8 +219,12 @@ public class StaffActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case (R.id.Logout):
                 Intent intent = new Intent(StaffActivity.this,MainActivity.class);
-                startActivity(intent);
 
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
                 break;
 
             default:

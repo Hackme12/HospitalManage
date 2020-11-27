@@ -21,6 +21,7 @@
         android:id="@+id/dialogPassword"
         android:layout_width="300dp"
         android:layout_height="40dp"
+        android:inputType="textPassword"
          android:layout_below="@+id/dialogUserId"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"

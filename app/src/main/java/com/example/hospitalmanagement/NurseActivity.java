@@ -85,6 +85,7 @@ public class NurseActivity extends AppCompatActivity {
                         intent.putExtra("pPhone",cPatient.getPhoneNumber());
                         intent.putExtra("pDateofBirth",cPatient.getDateOfBirth());
                         intent.putExtra("pEmail",cPatient.getEmailId());
+                        intent.putExtra("InsuranceName",cPatient.getInsuranceProvider());
                         intent.putExtra("Message","editFalse");
                         startActivity(intent);
                     }

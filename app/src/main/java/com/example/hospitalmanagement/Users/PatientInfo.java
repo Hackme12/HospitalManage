@@ -2,7 +2,7 @@ package com.example.hospitalmanagement.Users;
 
 public class PatientInfo {
 
-    private String PhoneNumber, DateOfBirth, EmailId, Address, InsuranceName;
+    private String PhoneNumber, DateOfBirth, EmailId, Address, InsuranceProvider;
     private String PatientID, Name, SocialSecurityNumber;
     private String BloodPressure,Height,Reason,Visit_Date,Weight;
 
@@ -17,7 +17,7 @@ public class PatientInfo {
 
 
     public PatientInfo(String patientID, String name, String socialSecurityNumber, String Address, String phoneNumber, String dateOfBirth, String emailId, String BloodPressure, String Height,
-                       String Reason, String Visit_Date, String Weight, String InsuranceName) {
+                       String Reason, String Visit_Date, String Weight, String InsuranceProvider) {
         PatientID = patientID;
         Name = name;
         SocialSecurityNumber = socialSecurityNumber;
@@ -30,7 +30,7 @@ public class PatientInfo {
         this.Reason = Reason;
         this.Visit_Date = Visit_Date;
         this.Weight = Weight;
-        this.InsuranceName = InsuranceName;
+        this.InsuranceProvider = InsuranceProvider;
     }
 
     public String getPatientID() {
@@ -56,11 +56,11 @@ public class PatientInfo {
     public void setSocialSecurityNumber(String socialSecurityNumber) {
         SocialSecurityNumber = socialSecurityNumber;
     }
-    public void setInsuranceName(String Insurance_Name){
-        InsuranceName = Insurance_Name;
+    public void setInsuranceProvider(String Insurance_Name){
+        InsuranceProvider = Insurance_Name;
     }
-     public String getInsuranceName(){
-        return InsuranceName;
+     public String getInsuranceProvider(){
+        return InsuranceProvider;
      }
 
 

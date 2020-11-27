@@ -73,12 +73,11 @@ public class DoctorActivity extends AppCompatActivity {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
                     APPI = item.getValue(AppointmentInformation.class);
-                    // System.out.println("        *************"+APPI.getDate() +"date" +CurrentDate  + "drId"+drId   +"  "+APPI.getDoctorName());
                     if (APPI.getDate().equals(CurrentDate) && (APPI.getDoctorName().equals(drName)))
                     {
                         patientList.add(" " + APPI.getPatientName());
                     } else {
-                        Toast.makeText(DoctorActivity.this, "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DoctorActivity.this, "NO PATIENT AT THE MOMENT", Toast.LENGTH_SHORT).show();
                     }
                 }
                 list.setAdapter(adapter);

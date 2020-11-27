@@ -108,9 +108,9 @@
             >
             <TextView
 
-                android:layout_width="90dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:text="Weight:"
+                android:text="Wt:"
                 android:textAlignment="center"
                 android:textSize="18dp"
                 android:textColor="#000000"
@@ -119,7 +119,7 @@
             </TextView>
             <EditText
                 android:id="@+id/tvWeight"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:hint="lb"
                 android:textAlignment="center"
@@ -128,22 +128,11 @@
                 android:padding="15dp"
                 >
             </EditText>
-            <TextView
 
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:hint="lb"
-               android:layout_marginTop="20dp"
-                android:paddingTop="20dp"
-                android:textSize="12dp"
-                android:textColor="#000000"
-                android:padding="15dp"
-                >
-            </TextView>
             <TextView
-                android:layout_width="90dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:text="Height:"
+                android:text="Ht:"
                 android:textAlignment="center"
                 android:textSize="18dp"
                 android:textColor="#000000"
@@ -152,7 +141,7 @@
             </TextView>
             <EditText
                 android:id="@+id/tvHeight"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:hint="in"
                 android:textAlignment="center"
@@ -162,20 +151,26 @@
                 >
             </EditText>
             <TextView
-
-                android:layout_width="45dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:hint="in"
-                android:textAlignment="viewEnd"
-                android:paddingTop="20dp"
-                android:layout_marginTop="20dp"
-                android:textSize="15dp"
+                android:text="BP:"
+                android:textAlignment="center"
+                android:textSize="18dp"
                 android:textColor="#000000"
                 android:padding="15dp"
                 >
             </TextView>
-
-
+            <EditText
+                android:id="@+id/tvBp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="mmHg"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:padding="15dp"
+                >
+            </EditText>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/inside_layout1"
@@ -185,56 +180,22 @@
             android:layout_below="@+id/inside_layout"
 
             >
-        <TextView
 
-            android:layout_width="180dp"
-            android:layout_height="match_parent"
-            android:text="Blood Pressure:"
-            android:textAlignment="center"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            android:padding="15dp"
-            >
-        </TextView>
 
-            <EditText
-                android:id="@+id/tvShowBP"
-                android:layout_width="165dp"
-                android:layout_height="match_parent"
-                android:hint="mmHg"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                android:textColor="#000000"
-                android:padding="15dp"
-                >
-            </EditText>
-            <TextView
-
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:hint="mmHg"
-
-                android:paddingTop="20dp"
-                android:layout_marginTop="20dp"
-                android:textSize="15dp"
-                android:textColor="#000000"
-                android:padding="10dp"
-                >
-            </TextView>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/inside_layout2"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:orientation="horizontal"
-            android:layout_below="@+id/inside_layout1"
+            android:layout_below="@+id/inside_layout"
 
             >
             <TextView
 
                 android:layout_width="180dp"
                 android:layout_height="match_parent"
-                android:text="Reason to Visit:"
+                android:text="Reason to visit"
                 android:textAlignment="center"
                 android:textSize="18dp"
                 android:textColor="#000000"
@@ -284,6 +245,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Add prescription"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textAlignment="center"
+                android:inputType="textMultiLine"
+                android:enabled="true"
+                android:minLines="4"
+                android:maxLines="4"
+                android:isScrollContainer="true"
+                android:focusable="true"
+                tools:ignore="TextViewEdits" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/inside_layout4"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal"
+            android:layout_below="@+id/inside_layout3"
+
+            >
+            <TextView
+
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:text="Treatment Record:"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textColor="#000000"
+                android:padding="15dp"
+                >
+            </TextView>
+
+            <EditText
+                android:id="@+id/edTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Add Treatment"
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textAlignment="center"

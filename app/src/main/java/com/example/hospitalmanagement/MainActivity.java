@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             else if(ParentDbname.equals("Ceo")){
                                 loadingBar.dismiss();
-                                Intent intent = new Intent(MainActivity.this,CeoActivity.class);
+                                Intent intent = new Intent(MainActivity.this,CeoMenu.class);
                                 startActivity(intent);
                             }
                             else{

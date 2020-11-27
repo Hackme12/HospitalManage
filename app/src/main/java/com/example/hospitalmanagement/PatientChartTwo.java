@@ -79,7 +79,7 @@ public class PatientChartTwo extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(!snapshot.child("Patient").child(PatientID).child("Details").exists()){
+                if(!snapshot.child("Patient").child(PatientID).child("Measurement").exists()){
 
                     HashMap<String, Object> detail = new HashMap<>();
                     detail.put("Visit_Date",todaysdate);
@@ -88,7 +88,7 @@ public class PatientChartTwo extends AppCompatActivity {
                     detail.put("BloodPressure", Bp);
                     detail.put("Reason", Reason);
 
-                    myref.child("Patient").child(PatientID).child("Details").
+                    myref.child("Patient").child(PatientID).child("Measurement").
                             updateChildren(detail).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

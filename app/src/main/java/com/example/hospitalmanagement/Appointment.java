@@ -75,7 +75,7 @@ public class Appointment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 temp = "Create";
-                DialogCheckPatient();
+                CreateAppointment();
             }
 
 
@@ -129,8 +129,11 @@ public class Appointment extends AppCompatActivity {
         switch (item.getItemId()) {
             case (R.id.Logout):
                 Intent intent = new Intent(Appointment.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-
+                finish();
                 break;
 
             default:
@@ -141,7 +144,7 @@ public class Appointment extends AppCompatActivity {
 
     }
 
-    private void DialogCheckPatient() {
+    private void CreateAppointment() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Appointment.this);
         View view = LayoutInflater.from(Appointment.this).inflate(R.layout.patient_appointment_dialog, null);
         builder.setView(view);
@@ -224,13 +227,5 @@ public class Appointment extends AppCompatActivity {
 
 
     }
-
-
-
-
-
-
-
-
     }
 

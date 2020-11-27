@@ -57,14 +57,19 @@ public class CeoActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         int hrs = c.get(Calendar.HOUR);
         int mnts = c.get(Calendar.MINUTE);
+        final String Currentdate = DateFormat.getDateInstance().format(c.getTime());
+        hrs = 10;
+       mnts = 10;
         if((hrs>=9&&(mnts>0))){  // comparing if the current time past 9
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot item : snapshot.getChildren()) {
                         dailyReport = item.getValue(DailyReport.class);
-                        DrList.add(" " + dailyReport.getDrName()+"                                 No of patient:"+dailyReport.getTotalPatientVisitToday()
-                        ) ;
+                        if(dailyReport.getDate().equals(Currentdate)){
+                        DrList.add(dailyReport.getDrName()+
+                                "\nNo of patient:"+dailyReport.getTotalPatientVisitToday()+ "\nAmount Earned:"+dailyReport.getTotal_Amount()) ;
+                    }
                     }
                     list.setAdapter(adapter);
                 }
