@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class PatientChartWithPrescription extends AppCompatActivity {
 
     EditText tvName,tvAddress, tvDob,tvEmail,tvPhone,tvWeight,tvHeight,tvBp,tvReasonToVisit;
-    protected String  stName, stAddress, stDob, stEmail, stPhone, stWeight, stHeight, stBp,stReason;
+    String  stName, stAddress, stDob, stEmail, stPhone, stWeight, stHeight, stBp,stReason;
     EditText edAddPrescription;
     EditText edTreatmentRecord;
     Button btn_done;
@@ -106,6 +106,7 @@ public class PatientChartWithPrescription extends AppCompatActivity {
         tvPhone = (EditText) findViewById(R.id.tvPhone);
         tvWeight = (EditText) findViewById(R.id.tvWeight);
         tvHeight = (EditText) findViewById(R.id.tvHeight);
+        tvBp = (EditText)findViewById(R.id.tvBp);
         tvReasonToVisit = (EditText) findViewById(R.id.tvReason);
         edAddPrescription = (EditText) findViewById(R.id.edPrescription);
         edTreatmentRecord = (EditText)findViewById(R.id.edTreatment);
@@ -193,25 +194,25 @@ public class PatientChartWithPrescription extends AppCompatActivity {
 
     private void updateWeightChanged() {
         if (!stWeight.equals(tvWeight.getEditableText().toString())) {
-            reference.child("Patient").child(patientID).child("Details").
+            reference.child("Patient").child(patientID).child("Measurement").
                     child("Weight").setValue(tvWeight.getEditableText().toString());
         }
     }
     private void updateHeightChanged() {
         if (!stHeight.equals(tvHeight.getEditableText().toString())) {
-            reference.child("Patient").child(patientID).child("Details").
+            reference.child("Patient").child(patientID).child("Measurement").
                     child("Height").setValue(tvHeight.getEditableText().toString());
         }
     }
     private void updateBPChanged() {
         if (!stBp.equals(tvBp.getEditableText().toString())) {
-            reference.child("Patient").child(patientID).child("Details").
+            reference.child("Patient").child(patientID).child("Measurement").
                     child("BloodPressure").setValue(tvBp.getEditableText().toString());
         }
     }
     private void updateVisitReasonChanged() {
         if (!stBp.equals(tvBp.getEditableText().toString())) {
-            reference.child("Patient").child(patientID).child("Details").
+            reference.child("Patient").child(patientID).child("Measurement").
                     child("Reason").setValue(tvReasonToVisit.getEditableText().toString());
         }
     }
@@ -231,15 +232,13 @@ public class PatientChartWithPrescription extends AppCompatActivity {
                 int count = 0;
                 double amount = 0.0;
                 final String cdate = DateFormat.getDateInstance().format(c.getTime());
-                final String key = patientID + ":" + cdate;
-                DatabaseReference removeAppoint = database.getReference("AppointmentList").child(key);
+                DatabaseReference removeAppoint = database.getReference("CheckedInList").child(patientID);
                 removeAppoint.removeValue();
                 //DatabaseReference removeDoctorSchedule = database.getReference("Doctors Schedule");
                 reference.child("Patient").child(patientID).child("Treatment Info").child("Prescription").
                         setValue(Prescription);
                 reference.child("Patient").child(patientID).child("Treatment Info").child("Treatment Record").
                         setValue(TreatmentRecord);
-
 
                 final int finalCount = count;
                 final double amountEarned = amount;
@@ -268,7 +267,6 @@ public class PatientChartWithPrescription extends AppCompatActivity {
 
                                 }
                             });
-
                         } else {
 
                             reference.child("DailyReport").child(key).child("TotalPatientVisitToday").setValue(dailyreport.getTotalPatientVisitToday() + 1);

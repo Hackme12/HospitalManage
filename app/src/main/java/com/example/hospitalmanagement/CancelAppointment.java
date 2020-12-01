@@ -46,10 +46,6 @@ public class CancelAppointment extends AppCompatActivity {
         btn_next = (Button)findViewById(R.id.btn_next);
         loadingBar = new ProgressDialog(this);
 
-
-
-
-
         edAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,29 +100,17 @@ public class CancelAppointment extends AppCompatActivity {
 
                 }
 
-
-
-
-
             }
         });
 
-
-
-
-
-
-
-
     }
 
-    private void deletePatientAppointment(final String patientId, final String appointmentDate) {
+    public void deletePatientAppointment(final String patientId, final String appointmentDate) {
 
 
         final String key = patientId +":"+appointmentDate;
-
+        System.out.println("Database");
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
         DatabaseReference myref = database.getReference();
 
         myref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -135,15 +119,11 @@ public class CancelAppointment extends AppCompatActivity {
 
 
               if(snapshot.child("AppointmentList").child(key).exists()){
-
-                  loadingBar.dismiss();
                    //AppointmentInformation API = snapshot.child("AppointmentList").child(key).getValue(AppointmentInformation.class);
                    DatabaseReference drKey = database.getReference("AppointmentList").child(key);
                     drKey.removeValue();
                     Toast.makeText(CancelAppointment.this, "Thank you", Toast.LENGTH_SHORT).show();
-
                }
-
             }
 
             @Override

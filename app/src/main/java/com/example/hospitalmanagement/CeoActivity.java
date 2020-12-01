@@ -59,7 +59,7 @@ public class CeoActivity extends AppCompatActivity {
         int mnts = c.get(Calendar.MINUTE);
         final String Currentdate = DateFormat.getDateInstance().format(c.getTime());
         hrs = 10;
-       mnts = 10;
+        mnts = 10;
         if((hrs>=9&&(mnts>0))){  // comparing if the current time past 9
             reference.addValueEventListener(new ValueEventListener() {
                 @Override

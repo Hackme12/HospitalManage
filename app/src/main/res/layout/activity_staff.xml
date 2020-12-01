@@ -211,18 +211,18 @@
 
                 >
                 <ImageView
-                    android:id="@+id/image_payment"
+                    android:id="@+id/imgCheckedInlist"
                     android:layout_width="150dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_height="125dp"
-                    android:src="@drawable/iconpayment"
+                    android:src="@drawable/iconchecklist"
 
                     />
                 <TextView
-                    android:id="@+id/text_payment"
-                    android:text="Pay Now"
+                    android:id="@+id/tvCheckedinList"
+                    android:text="Checked-in List"
                     android:textStyle="bold"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="25dp"
                     android:textColor="#000000"
                     android:textAlignment="center"
                     android:layout_width="wrap_content"

@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StaffActivity extends AppCompatActivity {
 
-    private ImageView CheckIn, Appointment, AddPatient, UpdatePatientInfo, PayNow, Appointment_List;
+    private ImageView CheckIn, Appointment, AddPatient, UpdatePatientInfo, CheckedInList, Appointment_List;
     FirebaseDatabase database;
     DatabaseReference reference;
     private EditText PId, PName;
@@ -45,7 +45,7 @@ public class StaffActivity extends AppCompatActivity {
         Appointment =(ImageView) findViewById(R.id.image_Appointment);
         AddPatient = (ImageView) findViewById(R.id.image_addPatient);
         UpdatePatientInfo = (ImageView) findViewById(R.id.image_updatePatientInfo);
-        PayNow = (ImageView) findViewById(R.id.image_payment);
+        CheckedInList = (ImageView) findViewById(R.id.imgCheckedInlist);
         Appointment_List = (ImageView) findViewById(R.id.image_AppointmentList);
         PId = (EditText)findViewById(R.id.id_patient);
         PName = (EditText) findViewById(R.id.id_fullName);
@@ -90,10 +90,10 @@ public class StaffActivity extends AppCompatActivity {
 
             }
         });
-        PayNow.setOnClickListener(new View.OnClickListener() {
+        CheckedInList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StaffActivity.this,Payment.class);
+                Intent intent = new Intent(StaffActivity.this,CheckedInList.class);
                 startActivity(intent);
             }
         });
@@ -105,9 +105,6 @@ public class StaffActivity extends AppCompatActivity {
                 DialogPatientinfo();
             }
         });
-
-
-
 
     }
 

@@ -27,13 +27,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.SQLOutput;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Date;
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 
 public class AppointmentList extends AppCompatActivity {
@@ -49,6 +48,7 @@ public class AppointmentList extends AppCompatActivity {
     ArrayAdapter<String> adapter;
    private ProgressDialog loadingBar;
     AppointmentInformation AppInform;
+    int hr, min, sec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,52 +63,38 @@ public class AppointmentList extends AppCompatActivity {
         list = new ArrayList<>();
         Calendar c = Calendar.getInstance();
         final String Currentdate = DateFormat.getDateInstance().format(c.getTime());
+
         DateFormat df = new SimpleDateFormat("HH:mm");
        final String CurrentTime = df.format(c.getTime());
-        System.out.println(df.format(c.getTime()));
         final String hour = CurrentTime.substring(0,2);
-        System.out.println(hour);
-
-        System.out.println(CurrentTime);
-
+        DateFormat date = new SimpleDateFormat("HH:mm:ss");
+        Date dt = new Date();
+        String currentTime = date.format(dt);
+         hr = Integer.parseInt(currentTime.substring(0,2));
+        min = Integer.parseInt(currentTime.substring(3,5));
+        sec = Integer.parseInt(currentTime.substring(6,8));
 
         adapter = new ArrayAdapter<>(AppointmentList.this, R.layout.appointmentlist,
                 R.id.tvAppointmentList, list);
-
-
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
-                        DateFormat date = new SimpleDateFormat("HH:mm:ss");
-                        Date dt = new Date();
-                        String currentTime = date.format(dt);
-
-                        int hr = Integer.parseInt(currentTime.substring(0,2));
-                        int min = Integer.parseInt(currentTime.substring(3,5));
-                        int sec = Integer.parseInt(currentTime.substring(6,8));
-
-                     for (DataSnapshot ds : snapshot.getChildren()) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
                         AppInform = ds.getValue(AppointmentInformation.class);
                     // Automatic No show clear appointment
-
                         if(AppInform.getDate().equals(Currentdate)&&((hr >= 20)&& hr<=23)){
 
                             reference.removeValue();
                         }
-                        //if(AppInform.getDate().compareTo(Currentdate)<0){
-
-                    //}
                         else if((AppInform.getDate().equals(Currentdate))){
-                            list.add("  " + AppInform.getPatientName() + "               " +
-                                    AppInform.getDate() + "\n                                           " + AppInform.getTime());
+                            list.add(AppInform.getPatientName() + "\n"+AppInform.getDate() + "\n"+ AppInform.getTime());
                         }
                      }
                     listView.setAdapter(adapter);
                     }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -120,6 +106,7 @@ public class AppointmentList extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                     CheckIn();
 
                 }
@@ -142,7 +129,6 @@ public class AppointmentList extends AppCompatActivity {
 
                     pid = PId.getText().toString().trim();
                     pname = PName.getText().toString().trim();
-
 
                     if (TextUtils.isEmpty(pid)) {
                         Toast.makeText(AppointmentList.this, "Please Enter Patient Id", Toast.LENGTH_SHORT).show();

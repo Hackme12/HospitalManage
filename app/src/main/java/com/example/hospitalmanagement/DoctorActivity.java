@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.hospitalmanagement.Users.AppointmentInformation;
+import com.example.hospitalmanagement.Users.checkList;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +34,7 @@ public class DoctorActivity extends AppCompatActivity {
     DatabaseReference reference;
     ArrayList<String> patientList;
     ArrayAdapter<String> adapter;
-    AppointmentInformation APPI;
+    checkList chk;
     String PatientId;
 
     String drName,drId;
@@ -47,9 +48,7 @@ public class DoctorActivity extends AppCompatActivity {
 
         list = (ListView) findViewById(R.id.list1);
         database = FirebaseDatabase.getInstance();
-        APPI = new AppointmentInformation();
-        reference = database.getReference().child("AppointmentList");
-
+        reference = database.getReference().child("CheckedInList");
         patientList = new ArrayList<>();
         adapter = new ArrayAdapter<>(DoctorActivity.this, R.layout.appointmentlist, R.id.tvAppointmentList, patientList);
 
@@ -72,10 +71,11 @@ public class DoctorActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot item : snapshot.getChildren()) {
-                    APPI = item.getValue(AppointmentInformation.class);
-                    if (APPI.getDate().equals(CurrentDate) && (APPI.getDoctorName().equals(drName)))
+                   // APPI = item.getValue(AppointmentInformation.class);
+                    chk = item.getValue(checkList.class);
+                    if (chk.getDate().equals(CurrentDate))
                     {
-                        patientList.add(" " + APPI.getPatientName());
+                        patientList.add(" " + chk.getName());
                     } else {
                         Toast.makeText(DoctorActivity.this, "NO PATIENT AT THE MOMENT", Toast.LENGTH_SHORT).show();
                     }
@@ -100,7 +100,7 @@ public class DoctorActivity extends AppCompatActivity {
 
 
     private void gettingDetailOfPatient(final String selected_patient) {
-        DatabaseReference myref = database.getReference().child("AppointmentList");
+        DatabaseReference myref = database.getReference().child("CheckedInList");
         Calendar c = Calendar.getInstance();
         final String CDate = DateFormat.getDateInstance().format(c.getTime());
 
@@ -108,10 +108,9 @@ public class DoctorActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot item: snapshot.getChildren()){
-                    APPI = item.getValue(AppointmentInformation.class);
-                    if(APPI.getDoctorName().equals(drName)&&
-                            (APPI.getPatientName().equals(selected_patient)&&APPI.getDate().equals(CDate))){
-                        PatientId = APPI.patientId;
+                    chk = item.getValue(checkList.class);
+                    if (chk.getName().equals(selected_patient)&&chk.getDate().equals(CDate)){
+                        PatientId = chk.getPatientId();
                         break;
                     }
                 }

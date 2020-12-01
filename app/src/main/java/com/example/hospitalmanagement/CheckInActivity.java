@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CheckInActivity extends AppCompatActivity {
     private EditText edName,edAddress,edDob,edPhonenumber,edEmail;
-    private String name, address, dob, phonenumber,  email, patientId;
+    public String name, address, dob, phonenumber,  email, patientId;
     private TextView tvName;
     private Button btnUpdate;
     private FirebaseDatabase database;
@@ -156,8 +156,9 @@ public class CheckInActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-
                Intent intent = new Intent(CheckInActivity.this,PaymentType.class);
+                System.out.println("********"+name);
+               intent.putExtra("tempName",name);
                startActivity(intent);
 
 
@@ -172,7 +173,6 @@ public class CheckInActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
 
     }
 

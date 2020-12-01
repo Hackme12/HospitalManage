@@ -28,9 +28,10 @@ public class AddPatient extends AppCompatActivity {
 
     private EditText name, dateOfBirth,address;
     private EditText emailId, phoneNumber,SSN, Insurance_provider;
-    private EditText patientId;
+   // private EditText patientId;
     private Button btnAddPatient;
     private ProgressDialog loadingBar;
+
 
 
     @Override
@@ -46,10 +47,10 @@ public class AddPatient extends AppCompatActivity {
         phoneNumber = (EditText)findViewById(R.id.phone_number);
         SSN = (EditText)findViewById(R.id.SSN);
         Insurance_provider = (EditText)findViewById(R.id.insurance_provider);
-        patientId = (EditText)findViewById(R.id.patientID);
         loadingBar = new ProgressDialog(this);
 
         btnAddPatient = (Button)findViewById(R.id.btn_Add_Patient);
+
 
 
         btnAddPatient.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +62,23 @@ public class AddPatient extends AppCompatActivity {
 
 
 
+    }
+
+    private String createPatientID(String name_, String SSN_){
+        int len = name_.length();
+        String patientID = "";
+        String fchar = name_.substring(0,1);
+        String lchar = name_.substring(len-1);
+
+        String lastfour = SSN_.substring(5,9);
+        patientID = fchar.concat(lchar).concat(lastfour);
+
+        return patientID;
 
     }
+
+
+
 
     private void CreatePatientChart() {
         String Name = name.getText().toString().trim();
@@ -72,7 +88,10 @@ public class AddPatient extends AppCompatActivity {
         String Phone = phoneNumber.getText().toString().trim();
         String SocialSN = SSN.getText().toString().trim();
         String Insurance_name = Insurance_provider.getText().toString().trim();
-        String PatientID = patientId.getText().toString().trim();
+        String PatientID = createPatientID(Name,SocialSN);
+
+
+
 
         if((TextUtils.isEmpty(Name))&& (TextUtils.isEmpty(DOB))
                 &&(TextUtils.isEmpty(Address))&& (TextUtils.isEmpty(Email))
@@ -81,7 +100,7 @@ public class AddPatient extends AppCompatActivity {
             Toast.makeText(AddPatient.this, "Please Enter All the Credentials above", Toast.LENGTH_SHORT).show();
         }
 
-        else if(SocialSN.length()!=10){
+        else if(SocialSN.length()!=9){
             Toast.makeText(AddPatient.this, "Social Security Number is incorrect.", Toast.LENGTH_SHORT).show();
         }
         else if(Phone.length()!=10){

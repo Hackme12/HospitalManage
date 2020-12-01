@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -30,7 +31,9 @@ public class CashPayment extends AppCompatActivity {
     private Button btnPayCash;
     FirebaseDatabase database;
     DatabaseReference reference;
-
+    Payment objPayment;
+    CancelAppointment  objCancelAppointment;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,10 @@ public class CashPayment extends AppCompatActivity {
         btnPayCash = (Button) findViewById(R.id.btn_payment);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+        objPayment = new Payment();
+        objCancelAppointment = new CancelAppointment();
+        Intent intent = getIntent();
+        name = intent.getStringExtra("Name");
 
 
         btnPayCash.setOnClickListener(new View.OnClickListener() {
@@ -78,15 +85,22 @@ public class CashPayment extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if(!snapshot.child("Payment").child(pID).child(cdate).exists()){
+                    System.out.println("*******************************************************************");
+                    //objCancelAppointment.deletePatientAppointment(pID,cdate);
+                    objPayment.addToCheckedInList(pID,name,cAmount,cdate);
+                    System.out.println("*******************************************************************");
                     HashMap<String, Object> payment_Profile = new HashMap<>();
                     payment_Profile.put("PatientId",pID);
+                    payment_Profile.put("Name",name);
                     payment_Profile.put("Payment_Amount",cAmount );
                     payment_Profile.put("Payment_Date",cdate);
                     payment_Profile.put("Payment Type","CASH");
-                   /* myref1.child("Patient").child(patientID).child("Payment Profile").
-                            child("Payment Amount").setValue(PayAmnt);
-                    Toast.makeText(Payment.this, "Payment Successful", Toast.LENGTH_SHORT).show();*/
-                    reference.child("Cash Payment").child(pID).child(cdate).updateChildren(payment_Profile).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    String key = pID+":"+ cdate;
+                    DatabaseReference removeKey = database.getReference("AppointmentList").child(key);
+                    removeKey.removeValue();
+
+                    reference.child("Payment").child(pID).child(cdate).updateChildren(payment_Profile).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
@@ -102,8 +116,15 @@ public class CashPayment extends AppCompatActivity {
 
                 }
                 else{
-                    reference.child("Cash Payment").child(pID).
+                    String key = pID+":"+ cdate;
+                    DatabaseReference removeKey = database.getReference("AppointmentList").child(key);
+                    removeKey.removeValue();
+                    objPayment.addToCheckedInList(pID,name,cAmount,cdate);
+
+                    reference.child("Payment").child(pID).
                             child(cdate).child("Other Payment").setValue(cAmount);
+                    Intent intent = new Intent(CashPayment.this,StaffActivity.class);
+                    startActivity(intent);
                 }
             }
 
